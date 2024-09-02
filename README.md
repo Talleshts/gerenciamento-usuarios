@@ -1,14 +1,14 @@
 # gerenciamento-usuarios
 2024-1 - Trabalho Final - Projeto de Sistemas de Software - Criação e Manutenção de usuários
 
----
-
 # Sistema de Gerenciamento de Usuários
 
-## Equipe Desenvolvedora
-- Talles Henrique Teófilo dos Santos - talles.h.santos@edu.ufes.br
-- Eduardo de Mello Portilho - eduardo.portilho@edu.ufes.br
-- Caio Cordeiro Jacome - 
+### Equipe Desenvolvedora
+>Talles Henrique Teófilo dos Santos - talles.h.santos@edu.ufes.br
+
+>Eduardo de Mello Portilho - eduardo.portilho@edu.ufes.br
+
+>Caio Cordeiro Jacome - 
 
 ## Descrição
 
@@ -71,7 +71,3 @@ Este projeto é parte do trabalho final da disciplina de Projeto de Sistemas de 
 ## Contato
 
 - Professor: Dr. Clayton Vieira Fraga Filho - clayton.fraga@ufes.br
-
----
-
-Esse modelo cobre os aspectos mais importantes do projeto, conforme especificado no documento. Caso precise de alguma modificação ou adição, é só avisar!
