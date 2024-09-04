@@ -12,4 +12,19 @@
         <exec.mainClass>com.ufes.gerenciamento.usuarios.GerenciamentoUsuarios</exec.mainClass>
     </properties>
     <name>GerenciamentoUsuarios</name>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.claytonfraga</groupId>
+            <artifactId>validadorsenha</artifactId>
+            <version>master-c949bd44ba-1</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+
 </project>
