@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
  */
 public class Notificacao {
     	private int id;
-	private Usuario usuario;
-	private String mensagem;
+	    private Usuario usuario;
+	    private String mensagem;
         private boolean visualizou;
         private LocalDateTime dataEnvio;
 
