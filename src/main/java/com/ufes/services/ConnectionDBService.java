@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class ConectionDBService {
-    private static ConectionDBService INSTANCE;
+public class ConnectionDBService {
+    private static ConnectionDBService INSTANCE;
 
     private Connection connection = null;
 
 
-    private ConectionDBService() {
+    private ConnectionDBService() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
         } catch (SQLException e) {
@@ -20,14 +20,18 @@ public class ConectionDBService {
         }
     }
 
-    public static ConectionDBService getInstance(){
+    public static ConnectionDBService getInstance(){
         if(INSTANCE == null){
-            INSTANCE = new ConectionDBService();
+            INSTANCE = new ConnectionDBService();
         }
         return INSTANCE;
     }
     public Connection getConnection(){
-        return this.connection;
+        try {
+            return DriverManager.getConnection("jdbc:sqlite:sample.db");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void closeConnection(){
         try {
