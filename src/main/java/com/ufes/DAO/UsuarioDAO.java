@@ -4,10 +4,7 @@ package com.ufes.DAO;
 import com.ufes.model.Usuario;
 import com.ufes.services.ConnectionDBService;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,22 +18,18 @@ public class UsuarioDAO {
         createTableUsuario();
     }
     public void createTableUsuario() {
-        Connection conn;
-        conn = ConnectionDBService.getInstance().getConnection();
-        Statement stt;
-        try {
-            stt = conn.createStatement();
-            String sql = "CREATE TABLE  IF NOT EXISTS USUARIOS"
-                    + "( ID INTEGER PRIMARY KEY AUTOINCREMENT"
-                    + ", NOME VARCHAR(20)"
-                    + ", SENHA VARCHAR(20)"
-                    + ", IS_ADMIN INTEGER"
-                    + ", IS_AUTORIZADO INTEGER"
-                    + ", DATA_CADASTRO VARCHAR(20))";
+        String sql = "CREATE TABLE IF NOT EXISTS USUARIOS"
+                + "( ID INTEGER PRIMARY KEY AUTOINCREMENT"
+                + ", NOME VARCHAR(20)"
+                + ", SENHA VARCHAR(20)"
+                + ", IS_ADMIN INTEGER"
+                + ", IS_AUTORIZADO INTEGER"
+                + ", DATA_CADASTRO VARCHAR(20))";
+        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+             Statement stt = conn.createStatement()) {
 
             stt.execute(sql);
-            conn.close();
-            stt.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -44,92 +37,112 @@ public class UsuarioDAO {
 
     public List<Usuario> findAll() {
         List<Usuario> usuarios = new ArrayList<>();
-        Connection conn;
-        conn = ConnectionDBService.getInstance().getConnection();
-        try {
-            Statement stt = conn.createStatement();
-            String sql = "SELECT * FROM USUARIOS";
-            ResultSet resultSet = stt.executeQuery(sql);
+
+        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+             Statement stt = conn.createStatement();
+             ResultSet resultSet = stt.executeQuery("SELECT * FROM USUARIOS")) {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
             while (resultSet.next()) {
-                Date dataCadastro = new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString("DATA_CADASTRO"));
+                Date dataCadastro = sdf.parse(resultSet.getString("DATA_CADASTRO"));
                 boolean isAdmin = resultSet.getBoolean("IS_ADMIN");
                 boolean isAutorizado = resultSet.getBoolean("IS_AUTORIZADO");
-                usuarios.add(
-                        new Usuario(resultSet.getInt("ID"),
-                                resultSet.getString("NOME"),
-                                resultSet.getString("SENHA"),
-                                dataCadastro,
-                                isAdmin,
-                                isAutorizado
-                                ));
-                conn.close();
-                stt.close();
-                resultSet.close();
+
+                usuarios.add(new Usuario(
+                        resultSet.getInt("ID"),
+                        resultSet.getString("NOME"),
+                        resultSet.getString("SENHA"),
+                        dataCadastro,
+                        isAdmin,
+                        isAutorizado
+                ));
             }
+
         } catch (SQLException | ParseException e) {
             throw new RuntimeException(e);
         }
         return usuarios;
     }
-
     public void update(Usuario usuario) {
-        Connection conn;
-        conn = ConnectionDBService.getInstance().getConnection();
-        try {
-            Statement stt = conn.createStatement();
-            String sql = String.format("UPDATE USUARIOS SET NOME = '%s', SENHA = '%s', IS_ADMIN = %d, IS_AUTORIZADO = %d WHERE USUARIOS.ID = '%d'",
-                    usuario.getNome(), usuario.getSenha(), (usuario.isAdmin()?1:0), (usuario.isAutorizado()?1:0), usuario.getId());
-            stt.execute(sql);
+        String sql = "UPDATE USUARIOS SET NOME = ?, SENHA = ?, IS_ADMIN = ?, IS_AUTORIZADO = ? WHERE ID = ?";
 
-            conn.close();
-            stt.close();
+        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+             PreparedStatement stt = conn.prepareStatement(sql)) {
+
+            stt.setString(1, usuario.getNome());
+            stt.setString(2, usuario.getSenha());
+            stt.setInt(3, usuario.isAdmin() ? 1 : 0);
+            stt.setInt(4, usuario.isAutorizado() ? 1 : 0);
+            stt.setInt(5, usuario.getId());
+
+            stt.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void insert(Usuario usuario) {
-        Connection conn;
-        conn = ConnectionDBService.getInstance().getConnection();
+        String sql = "INSERT INTO USUARIOS (NOME, SENHA, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?)";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dataCadastro = formatter.format(usuario.getDataCadastro());
 
-        try {
-            Statement stt = conn.createStatement();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String dataCadastro = formatter.format(usuario.getDataCadastro());
-            String sql = String.format("INSERT INTO USUARIOS ( NOME, SENHA, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES  ('%s', '%s', %d, %d, '%s')",
-                    usuario.getNome(),
-                    usuario.getSenha(),
-                    (usuario.isAdmin()?1:0),
-                    (usuario.isAutorizado()?1:0),
-                    dataCadastro);
-            stt.execute(sql);
+        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+             PreparedStatement stt = conn.prepareStatement(sql)) {
 
-            conn.close();
-            stt.close();
+            stt.setString(1, usuario.getNome());
+            stt.setString(2, usuario.getSenha());
+            stt.setInt(3, usuario.isAdmin() ? 1 : 0);
+            stt.setInt(4, usuario.isAutorizado() ? 1 : 0);
+            stt.setString(5, dataCadastro);
+
+            stt.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     public Usuario findByID(int id) {
         Usuario usuario = null;
-        Connection conn;
-        conn = ConnectionDBService.getInstance().getConnection();
-        try {
-            Statement stt = conn.createStatement();
-            String sql = "SELECT * FROM USUARIOS WHERE USUARIOS.ID = " + id;
+        String sql = "SELECT * FROM USUARIOS WHERE ID = ?";
 
-            ResultSet resultSet = stt.executeQuery(sql);
-            Date dataCadastro = new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString("DATA_CADASTRO"));
-            usuario = new Usuario(resultSet.getInt("ID"),
-                    resultSet.getString("NOME"),
-                    resultSet.getString("SENHA"),
-                    dataCadastro,
-                    resultSet.getBoolean("IS_ADMIN"),
-                    resultSet.getBoolean("IS_AUTORIZADO")
+        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+             PreparedStatement stt = conn.prepareStatement(sql)) {
+
+            stt.setInt(1, id);
+            try (ResultSet resultSet = stt.executeQuery()) {
+                if (resultSet.next()) {
+                    Date dataCadastro = new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString("DATA_CADASTRO"));
+                    usuario = new Usuario(
+                            resultSet.getInt("ID"),
+                            resultSet.getString("NOME"),
+                            resultSet.getString("SENHA"),
+                            dataCadastro,
+                            resultSet.getBoolean("IS_ADMIN"),
+                            resultSet.getBoolean("IS_AUTORIZADO")
                     );
+                }
+            }
+
         } catch (SQLException | ParseException e) {
             throw new RuntimeException(e);
         }
         return usuario;
+    }
+
+    public void remove(Integer id) {
+        String sql = "DELETE FROM USUARIOS WHERE ID = ?";
+
+        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+             PreparedStatement stt = conn.prepareStatement(sql)) {
+
+            stt.setInt(1, id);
+            stt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

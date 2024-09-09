@@ -7,6 +7,9 @@ package com.ufes.principal;
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -18,7 +21,7 @@ public class GerenciamentoUsuarios {
 
         System.out.println("Hello World!");
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = new Usuario("Caio","123",true,true );
+        Usuario usuario = new Usuario("João","123",true,true );
         //usuarioDAO.insert(usuario);
         usuario.setNome("Talles");
         usuario.setId(2);
@@ -30,7 +33,12 @@ public class GerenciamentoUsuarios {
         usuario2 = usuarioDAO.findByID(2);
         System.out.println(usuario2.toString());
 
-        //o findAll ta quebrado
 
+        List<Usuario> usuarios= usuarioDAO.findAll();
+        System.out.println(usuarios.toString());
+
+        usuarioDAO.remove(2);
+        usuarios= usuarioDAO.findAll();
+        System.out.println(usuarios.toString());
     }
 }
