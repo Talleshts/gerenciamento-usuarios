@@ -17,7 +17,7 @@ public class UsuarioDAO {
     public UsuarioDAO() {
         createTableUsuario();
     }
-    public void createTableUsuario() {
+    public final void createTableUsuario() {
         String sql = "CREATE TABLE IF NOT EXISTS USUARIOS"
                 + "( ID INTEGER PRIMARY KEY AUTOINCREMENT"
                 + ", NOME VARCHAR(20)"
@@ -25,7 +25,7 @@ public class UsuarioDAO {
                 + ", IS_ADMIN INTEGER"
                 + ", IS_AUTORIZADO INTEGER"
                 + ", DATA_CADASTRO VARCHAR(20))";
-        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+        try (Connection conn = ConnectionDBService.getConnection();
              Statement stt = conn.createStatement()) {
 
             stt.execute(sql);
@@ -38,7 +38,7 @@ public class UsuarioDAO {
     public List<Usuario> findAll() {
         List<Usuario> usuarios = new ArrayList<>();
 
-        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+        try (Connection conn = ConnectionDBService.getConnection();
              Statement stt = conn.createStatement();
              ResultSet resultSet = stt.executeQuery("SELECT * FROM USUARIOS")) {
 
@@ -67,7 +67,7 @@ public class UsuarioDAO {
     public void update(Usuario usuario) {
         String sql = "UPDATE USUARIOS SET NOME = ?, SENHA = ?, IS_ADMIN = ?, IS_AUTORIZADO = ? WHERE ID = ?";
 
-        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+        try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement stt = conn.prepareStatement(sql)) {
 
             stt.setString(1, usuario.getNome());
@@ -88,7 +88,7 @@ public class UsuarioDAO {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dataCadastro = formatter.format(usuario.getDataCadastro());
 
-        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+        try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement stt = conn.prepareStatement(sql)) {
 
             stt.setString(1, usuario.getNome());
@@ -108,7 +108,7 @@ public class UsuarioDAO {
         Usuario usuario = null;
         String sql = "SELECT * FROM USUARIOS WHERE ID = ?";
 
-        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+        try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement stt = conn.prepareStatement(sql)) {
 
             stt.setInt(1, id);
@@ -135,7 +135,7 @@ public class UsuarioDAO {
     public void remove(Integer id) {
         String sql = "DELETE FROM USUARIOS WHERE ID = ?";
 
-        try (Connection conn = ConnectionDBService.getInstance().getConnection();
+        try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement stt = conn.prepareStatement(sql)) {
 
             stt.setInt(1, id);

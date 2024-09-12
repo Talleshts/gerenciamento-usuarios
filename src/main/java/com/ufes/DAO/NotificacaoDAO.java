@@ -26,9 +26,10 @@ public class NotificacaoDAO {
                 CREATE TABLE IF NOT EXISTS Notificacao (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     id_usuario INTEGER NOT NULL REFERENCES Usuario(id),
+                    titulo VARCHAR NOT NULL,
                     mensagem VARCHAR NOT NULL,
-                    visualizada INT DEFAULT 0,
-                    data VARCHAR NOT NULL
+                    visualizou INT DEFAULT 0,
+                    dataEnvio VARCHAR NOT NULL
                 );
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
@@ -40,12 +41,13 @@ public class NotificacaoDAO {
     }
 
     public void insert(Notificacao notificacao) throws Exception {
-        String SQL = "INSERT INTO Notificacao(mensagem, id_usuario, data) VALUES (?, ?, ?)";
+        String SQL = "INSERT INTO Notificacao(mensagem, titulo, id_usuario, dataEnvio) VALUES (?, ?, ?, ?)";
         try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL)) {
-            ps.setString(1, notificacao.getMensagem());
-            ps.setInt(2, notificacao.getUsuario().getId());
-            ps.setString(3, LocalDateTime.now().toString());
+            ps.setString(1, notificacao.getMensagem());            
+            ps.setString(2, notificacao.getTitulo());
+            ps.setInt(3, notificacao.getUsuario().getId());
+            ps.setString(4, LocalDateTime.now().toString());
             ps.executeUpdate();
         } catch (Exception e) {
             throw new Exception("Erro ao inserir");
@@ -53,7 +55,7 @@ public class NotificacaoDAO {
     }
 
     public void update(Notificacao notificacao) throws Exception {
-        String SQL = "UPDATE Notificacao SET visualizada = ? WHERE id = ?";
+        String SQL = "UPDATE Notificacao SET visualizou = ? WHERE id = ?";
         try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setBoolean(1, notificacao.isVisualizou());
@@ -102,9 +104,10 @@ public class NotificacaoDAO {
                 Usuario u = new Usuario();
                 n.setId(rs.getInt(1));
                 n.setMensagem(rs.getString(2));
-                n.setUsuario(u.temId(rs.getInt(3)));
-                n.setVisualizou(rs.getBoolean(4));
-                n.setDataEnvio(LocalDateTime.parse(rs.getString(5)));
+                n.setTitulo(rs.getString(3));
+                n.setUsuario(u.temId(rs.getInt(4)));
+                n.setVisualizou(rs.getBoolean(5));
+                n.setDataEnvio(LocalDateTime.parse(rs.getString(6)));
                 notificacoes.add(n);
             }
         } catch (Exception e) {
@@ -115,7 +118,7 @@ public class NotificacaoDAO {
 
     public Notificacao getById(int idNotificacao) throws Exception {
         String SQL = """
-                SELECT n.id, n.mensagem, n.id_usuario
+                SELECT n.id, n.mensagem, n.titulo, n.id_usuario
                 FROM Notificacao n WHERE n.id = ?;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
@@ -127,7 +130,9 @@ public class NotificacaoDAO {
             if (rs.next()) {
                 n.setId(rs.getInt(1));
                 n.setMensagem(rs.getString(2));
-                n.setUsuario(u.temId(rs.getInt(3)));
+                n.setUsuario(u.temId(rs.getInt(3)));                
+                n.setTitulo(rs.getString(4));
+
             }
             return n;
         } catch (Exception e) {
@@ -139,7 +144,7 @@ public class NotificacaoDAO {
         String SQL = """
                 SELECT count(1)
                 FROM Notificacao n
-                WHERE n.id_usuario = ? AND n.visualizada = 0;
+                WHERE n.id_usuario = ? AND n.visualizou = 0;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL)) {
@@ -158,7 +163,7 @@ public class NotificacaoDAO {
         String SQL = """
                 SELECT count(1)
                 FROM Notificacao n
-                WHERE n.id_usuario = ? AND n.visualizada = 1;
+                WHERE n.id_usuario = ? AND n.visualizou = 1;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL)) {
