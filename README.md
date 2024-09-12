@@ -8,7 +8,7 @@
 
 >Eduardo de Mello Portilho - eduardo.portilho@edu.ufes.br
 
->Caio Cordeiro Jacome - 
+>Caio Cordeiro Jacome - caio.jacome@edu.ufes.br
 
 ## Descrição
 
