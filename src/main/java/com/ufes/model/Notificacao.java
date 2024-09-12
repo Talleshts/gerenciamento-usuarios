@@ -25,6 +25,9 @@ public class Notificacao {
         this.dataEnvio = dataEnvio;
     }
 
+    public Notificacao() {
+    }
+
     public int getId() {
         return id;
     }

@@ -35,6 +35,10 @@ public class Usuario {
         this.isAutorizado = isAutorizado;
     }
 
+    public Usuario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getId() {
         return id;
     }
@@ -67,6 +71,10 @@ public class Usuario {
         return senha;
     }
 
+    public Usuario temId(int id) {
+        this.id = id;
+        return this;
+    }
 
     public Date getDataCadastro() {
         return dataCadastro;

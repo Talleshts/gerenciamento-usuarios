@@ -7,37 +7,36 @@ import java.sql.SQLException;
 
 public class ConnectionDBService {
     private static ConnectionDBService INSTANCE;
-
     private Connection connection = null;
 
 
     private ConnectionDBService() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
         } catch (SQLException e) {
             System.err.println("Erro na conexão do banco de dados");
             throw new RuntimeException(e);
         }
     }
 
-    public static ConnectionDBService getInstance(){
-        if(INSTANCE == null){
+    public static ConnectionDBService getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new ConnectionDBService();
         }
         return INSTANCE;
     }
-    public Connection getConnection(){
-        try {
-            return DriverManager.getConnection("jdbc:sqlite:sample.db");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    
+    public static Connection getConnection() {
+        return getInstance().connection;
     }
-    public void closeConnection(){
+    
+    public void closeConnection() {
         try {
-            connection.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         } catch (SQLException e) {
-            System.err.println("Erro em fechar a conexão do banco de dados");
+            System.err.println("Erro ao fechar a conexão do banco de dados");
             throw new RuntimeException(e);
         }
     }
