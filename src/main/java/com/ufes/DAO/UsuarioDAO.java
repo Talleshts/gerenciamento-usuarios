@@ -13,10 +13,10 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-
     public UsuarioDAO() {
         createTableUsuario();
     }
+    
     public final void createTableUsuario() {
         String sql = "CREATE TABLE IF NOT EXISTS USUARIOS"
                 + "( ID INTEGER PRIMARY KEY AUTOINCREMENT"

@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import com.ufes.model.Usuario;
 import com.ufes.observer.IObserver;
+import com.ufes.view.ListarNotificacaoView;
 import com.ufes.view.PrincipalView;
 
 /**
@@ -17,6 +18,7 @@ import com.ufes.view.PrincipalView;
 public class PrincipalPresenter implements IObserver {
 
     private PrincipalView principalView;
+    private ListarNotificacaoPresenter listarNotificacaoPresenter;
     private Usuario usuario = null;
 
     public PrincipalPresenter() throws IOException {
@@ -26,6 +28,13 @@ public class PrincipalPresenter implements IObserver {
         if (usuario == null) {
             new BoasVindasPresenter(principalView.getDesktopPane());
         }
+        listarNotificacaoPresenter = new ListarNotificacaoPresenter(new ListarNotificacaoView());
+        principalView.getNotificationButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarNotificacaoPresenter.getView().setVisible(true);
+                System.out.println("Funciona");
+            }
+        });
     }
 
     @Override

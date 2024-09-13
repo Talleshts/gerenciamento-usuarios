@@ -4,6 +4,8 @@
  */
 package com.ufes.view;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author tallesh
@@ -20,6 +22,10 @@ public class PrincipalView extends javax.swing.JFrame {
 	public javax.swing.JDesktopPane getDesktopPane() {
 		return jDesktopPane1;
 	}
+    
+    public JButton getNotificationButton() {
+       return btnNotificacao;
+    }
 
 	/**
 	 * This method is called from within the constructor to initialize the form.

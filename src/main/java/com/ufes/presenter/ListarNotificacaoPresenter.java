@@ -4,10 +4,21 @@
  */
 package com.ufes.presenter;
 
+import com.ufes.view.ListarNotificacaoView;
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author talle
  */
 public class ListarNotificacaoPresenter {
+    private ListarNotificacaoView listarNotificacaoView;
     
+    public ListarNotificacaoPresenter(ListarNotificacaoView listarNotificacaoView){
+        this.listarNotificacaoView = listarNotificacaoView;
+    }
+    
+    public JInternalFrame getView(){
+        return listarNotificacaoView;
+    }
 }

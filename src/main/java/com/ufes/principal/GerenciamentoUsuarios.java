@@ -24,7 +24,5 @@ public class GerenciamentoUsuarios {
         }catch (Exception e){
               System.out.println("Hello World!");
         }
-
-      
     }
 }
