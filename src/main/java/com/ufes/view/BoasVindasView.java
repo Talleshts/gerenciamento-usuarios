@@ -5,12 +5,12 @@
 package com.ufes.view;
 
 import javax.swing.JButton;
-
+import javax.swing.JInternalFrame;
 /**
  *
  * @author talle
  */
-public class BoasVindasView extends javax.swing.JInternalFrame {
+public class BoasVindasView extends JInternalFrame {
     private static BoasVindasView view;
 	/**
 	 * Creates new form BoasVindasView

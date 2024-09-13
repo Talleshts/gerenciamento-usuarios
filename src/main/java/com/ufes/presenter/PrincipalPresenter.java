@@ -10,6 +10,7 @@ import com.ufes.model.Usuario;
 import com.ufes.observer.IObserver;
 import com.ufes.view.ListarNotificacaoView;
 import com.ufes.view.PrincipalView;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -18,6 +19,7 @@ import com.ufes.view.PrincipalView;
 public class PrincipalPresenter implements IObserver {
 
     private PrincipalView principalView;
+    private ListarNotificacaoView listarNotificacaoView;
     private ListarNotificacaoPresenter listarNotificacaoPresenter;
     private Usuario usuario = null;
 
@@ -28,11 +30,11 @@ public class PrincipalPresenter implements IObserver {
         if (usuario == null) {
             new BoasVindasPresenter(principalView.getDesktopPane());
         }
-        listarNotificacaoPresenter = new ListarNotificacaoPresenter(new ListarNotificacaoView());
+        listarNotificacaoView = new ListarNotificacaoView();
+        listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
         principalView.getNotificationButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarNotificacaoPresenter.getView().setVisible(true);
-                System.out.println("Funciona");
             }
         });
     }

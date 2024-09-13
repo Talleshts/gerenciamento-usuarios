@@ -32,7 +32,6 @@ public class BoasVindasPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
 				boasVindasView.setVisible(false);
-                // Code to be executed when the button is clicked
 				manterUsuarioView.setVisible(true);
             }
         });
@@ -41,7 +40,6 @@ public class BoasVindasPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
 				boasVindasView.setVisible(false);
-                // Code to be executed when the button is clicked
 				manterUsuarioView.setVisible(true);
             }
         });
