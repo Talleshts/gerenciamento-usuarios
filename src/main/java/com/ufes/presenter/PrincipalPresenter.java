@@ -7,31 +7,29 @@ package com.ufes.presenter;
 import java.io.IOException;
 
 import com.ufes.model.Usuario;
-import com.ufes.observer.IObserverUsuario;
+import com.ufes.observer.IObserver;
 import com.ufes.view.PrincipalView;
 
 /**
  *
  * @author tallesh
  */
-public class PrincipalPresenter implements IObserverUsuario {
+public class PrincipalPresenter implements IObserver {
 
-	private PrincipalView principalView;
-	private Usuario usuario = null;
+    private PrincipalView principalView;
+    private Usuario usuario = null;
 
-	public PrincipalPresenter() throws IOException {
-		principalView = new PrincipalView();
-		principalView.setVisible(true);
+    public PrincipalPresenter() throws IOException {
+        principalView = new PrincipalView();
+        principalView.setVisible(true);
 
-		if (usuario == null) {
-			new BoasVindasPresenter(principalView.getDesktopPane());
-		}
-	}
+        if (usuario == null) {
+            new BoasVindasPresenter(principalView.getDesktopPane());
+        }
+    }
 
-	@Override
-	public void update(Usuario usuario) {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from
-																		// nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-	}
-
+    @Override
+    public void update(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
