@@ -6,6 +6,7 @@ package com.ufes.principal;
 
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
+import com.ufes.presenter.PrincipalPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,12 @@ import java.util.List;
 public class GerenciamentoUsuarios {
 
     public static void main(String[] args) throws Exception{
+        try{
+            new PrincipalPresenter();
+        }catch (Exception e){
+              System.out.println("Hello World!");
+        }
 
-        System.out.println("Hello World!");
+      
     }
 }
