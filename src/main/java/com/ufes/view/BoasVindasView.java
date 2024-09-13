@@ -11,13 +11,20 @@ import javax.swing.JButton;
  * @author talle
  */
 public class BoasVindasView extends javax.swing.JInternalFrame {
-
+    private static BoasVindasView view;
 	/**
 	 * Creates new form BoasVindasView
 	 */
-	public BoasVindasView() {
+	private BoasVindasView() {
 		initComponents();
 	}
+
+    public static BoasVindasView getInstance() {
+        if (view == null) {
+            view = new BoasVindasView();
+        }
+        return view;
+    }
 
 	/**
 	 * This method is called from within the constructor to initialize the form.

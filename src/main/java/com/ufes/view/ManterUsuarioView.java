@@ -4,6 +4,9 @@
  */
 package com.ufes.view;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import com.ufes.view.BoasVindasView;
 /**
  *
  * @author talle
@@ -133,7 +136,15 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
                     .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
         );
-
+        jBtnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+				// boasVindasView.dispose();
+                // Code to be executed when the button is clicked
+				BoasVindasView.getInstance().setVisible(true);
+                setVisible(false);
+            }
+        });
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

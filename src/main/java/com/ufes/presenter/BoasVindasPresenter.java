@@ -22,15 +22,17 @@ public class BoasVindasPresenter {
 	private ManterUsuarioView manterUsuarioView;
 
 	public BoasVindasPresenter(JDesktopPane desktopPane) throws IOException {
-		boasVindasView = new BoasVindasView();
+		boasVindasView = BoasVindasView.getInstance();
+		manterUsuarioView = new ManterUsuarioView();
 		desktopPane.add(boasVindasView);
+		desktopPane.add(manterUsuarioView);
+
 		boasVindasView.setVisible(true);
 		boasVindasView.getLoginBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+				boasVindasView.setVisible(false);
                 // Code to be executed when the button is clicked
-                manterUsuarioView = new ManterUsuarioView();
-				desktopPane.add(manterUsuarioView);
 				manterUsuarioView.setVisible(true);
             }
         });
@@ -38,9 +40,8 @@ public class BoasVindasPresenter {
 		boasVindasView.getSigninBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+				boasVindasView.setVisible(false);
                 // Code to be executed when the button is clicked
-                manterUsuarioView = new ManterUsuarioView();
-				desktopPane.add(manterUsuarioView);
 				manterUsuarioView.setVisible(true);
             }
         });
