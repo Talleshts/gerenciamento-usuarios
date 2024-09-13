@@ -4,6 +4,8 @@
  */
 package com.ufes.view;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author talle
@@ -145,6 +147,14 @@ public class BoasVindasView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getLoginBtn() {
+        return jButton1;
+    }
+
+    public JButton getSigninBtn() {
+        return jButton2;
+    }
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
