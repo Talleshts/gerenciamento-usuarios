@@ -5,9 +5,17 @@ import com.ufes.model.Usuario;
 import com.ufes.presenter.PrincipalPresenter;
 import com.ufes.view.ManterUsuarioView;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ManterUsuarioLoginState implements ManterUsuarioState{
+    private final PrincipalPresenter principalPresenter;
+
+    public ManterUsuarioLoginState(PrincipalPresenter principalPresenter) {
+        this.principalPresenter = principalPresenter;
+    }
+    
     @Override
     public void aplicarState(ManterUsuarioView view) {
         // Alterar o título da tela
@@ -37,7 +45,12 @@ public class ManterUsuarioLoginState implements ManterUsuarioState{
         if (usuario != null) {
             JOptionPane.showMessageDialog(view, "Login realizado com sucesso!");
             view.setVisible(false); // Esconde a tela de login
-
+            try {
+                principalPresenter.atualizarEstadoUsuario(usuario);
+            } catch (IOException ex) {
+                Logger.getLogger(ManterUsuarioLoginState.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         } else {
             JOptionPane.showMessageDialog(view, "Email ou senha inválidos", "Erro de Login", JOptionPane.ERROR_MESSAGE);
         }

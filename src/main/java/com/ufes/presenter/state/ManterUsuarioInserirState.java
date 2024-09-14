@@ -7,6 +7,7 @@ package com.ufes.presenter.state;
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
 import com.ufes.presenter.BoasVindasPresenter;
+import com.ufes.presenter.PrincipalPresenter;
 import com.ufes.services.ValidadorEntryService;
 import com.ufes.view.BoasVindasView;
 import com.ufes.view.ManterUsuarioView;
@@ -24,6 +25,7 @@ import javax.swing.JOptionPane;
 public class ManterUsuarioInserirState implements ManterUsuarioState{
     private UsuarioDAO usuarioDAO;
     private ManterUsuarioView manterUsuarioView;
+    private PrincipalPresenter principalPresenter;
 
     public ManterUsuarioInserirState(ManterUsuarioView manterUsuarioView) {
         this.manterUsuarioView = manterUsuarioView;
@@ -43,25 +45,25 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
     }
     
     @Override
-    public void executarAcao(ManterUsuarioView view){
+    public void executarAcao(ManterUsuarioView view) {
         // Lógica de cadastro
         String nome = view.getjTxtFNome().getText();
         String senha = String.valueOf(view.getjPassFSenha().getPassword());
-        String email = String.valueOf(view.getjTxtFEmail().getText());     //olha isso aqui pra ver se ta certo
+        String email = String.valueOf(view.getjTxtFEmail().getText());
+
         ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
         validadorEntryService.validarCadastro(); // Validar entradas
+
         Usuario usuario = new Usuario(nome, senha, email, false, true);
-        
+
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.insert(usuario); // Salvando o usuário no banco
-        
+
         JOptionPane.showMessageDialog(view, "Cadastro realizado com sucesso!");
         view.setVisible(false); // Esconde a tela de manter usuário
-        try {
-            new BoasVindasPresenter(view.getDesktopPane());
-        } catch (IOException ex) {
-            Logger.getLogger(ManterUsuarioInserirState.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // Em vez de criar um novo BoasVindasPresenter, reutiliza o PrincipalPresenter
+        principalPresenter.voltarParaBoasVindas();
     }
+
         
 }

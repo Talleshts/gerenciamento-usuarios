@@ -20,17 +20,17 @@ import javax.swing.JLabel;
  */
 public class PrincipalPresenter implements IObserver {
 
-       private PrincipalView principalView;
+    private PrincipalView principalView;
     private ListarNotificacaoView listarNotificacaoView;
     private ListarNotificacaoPresenter listarNotificacaoPresenter;
-    private Usuario usuario = null;
+    private Usuario usuario;
 
     public PrincipalPresenter() throws IOException {
         principalView = new PrincipalView();
         principalView.setVisible(true);
 
         // Inicia a tela de boas-vindas ou a tela principal
-        atualizarEstadoUsuario();
+        atualizarEstadoUsuario(usuario);
 
         listarNotificacaoView = new ListarNotificacaoView();
         listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
@@ -39,7 +39,7 @@ public class PrincipalPresenter implements IObserver {
         principalView.getNotificationButton().addActionListener(evt -> listarNotificacaoPresenter.getView().setVisible(true));
     }
 
-    private void atualizarEstadoUsuario() throws IOException {
+    public void atualizarEstadoUsuario(Usuario usuario) throws IOException {
         if (usuario == null) {
             // Se não estiver logado, exibe apenas o JDesktopPane e oculta outros componentes
             principalView.getDesktopPane().setVisible(true);
@@ -50,7 +50,7 @@ public class PrincipalPresenter implements IObserver {
             principalView.getUsuarioNome().setVisible(false);
             
             // Mostra a tela de boas-vindas
-            new BoasVindasPresenter(principalView.getDesktopPane());            
+            new BoasVindasPresenter(principalView.getDesktopPane(), this);            
 
         } else {
             // Se estiver logado, exibe todos os componentes
@@ -70,7 +70,7 @@ public class PrincipalPresenter implements IObserver {
     public void update(Usuario usuario) {
         this.usuario = usuario;
         try {
-            atualizarEstadoUsuario(); // Atualiza a view ao receber novo estado do usuário
+            atualizarEstadoUsuario(usuario); // Atualiza a view ao receber novo estado do usuário
         } catch (IOException ex) {
             Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +80,7 @@ public class PrincipalPresenter implements IObserver {
     public void voltarParaBoasVindas() {
         try {
             usuario = null;
-            atualizarEstadoUsuario(); // Redefine o estado para mostrar a tela de boas-vindas
+            atualizarEstadoUsuario(usuario); // Redefine o estado para mostrar a tela de boas-vindas
         } catch (IOException ex) {
             Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
