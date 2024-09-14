@@ -32,6 +32,12 @@ public class BoasVindasPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
 				boasVindasView.setVisible(false);
+				manterUsuarioView.getMainLabel().setText("Logar Usuário");
+				manterUsuarioView.getPrimaryButton().setText("Login");
+				manterUsuarioView.getNameLabel().setVisible(false);
+				manterUsuarioView.getNameField().setVisible(false);
+				manterUsuarioView.getConfirmPasswordLabel().setVisible(false);
+				manterUsuarioView.getConfirmPasswordField().setVisible(false);
 				manterUsuarioView.setVisible(true);
             }
         });
@@ -40,6 +46,12 @@ public class BoasVindasPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
 				boasVindasView.setVisible(false);
+				manterUsuarioView.getMainLabel().setText("Cadastrar Usuário");
+				manterUsuarioView.getPrimaryButton().setText("Salvar");
+				manterUsuarioView.getNameLabel().setVisible(true);
+				manterUsuarioView.getNameField().setVisible(true);
+				manterUsuarioView.getConfirmPasswordLabel().setVisible(true);
+				manterUsuarioView.getConfirmPasswordField().setVisible(true);
 				manterUsuarioView.setVisible(true);
             }
         });
