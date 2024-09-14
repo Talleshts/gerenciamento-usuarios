@@ -1,9 +1,5 @@
 package com.ufes.model;
 
-import com.ufes.services.ConnectionDBService;
-
-import java.util.Date;
-
 public class UsuarioLogado {
     private int id;
     private String nome;

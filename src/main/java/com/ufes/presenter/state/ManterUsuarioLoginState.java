@@ -47,6 +47,8 @@ public class ManterUsuarioLoginState implements ManterUsuarioState{
         if (usuario != null) {
             JOptionPane.showMessageDialog(view, "Login realizado com sucesso!");
             view.setVisible(false); // Esconde a tela de login
+            UsuarioLogado usuarioLogado = UsuarioLogado.getINSTANCE();
+            usuarioLogado.setDadosUsuarioLogado(usuario);
             try {
                 principalPresenter.atualizarEstadoUsuario(usuario);
             } catch (IOException ex) {

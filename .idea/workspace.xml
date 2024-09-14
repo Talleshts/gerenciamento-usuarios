@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="adicionando uma factory de logs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/presenter/PrincipalPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView.class" beforeDir="false" />
-    </list>
+    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="Criando uma unica instância do usuario logado" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -161,7 +154,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726325554468</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Criando uma unica instância do usuario logado">
+      <option name="closed" value="true" />
+      <created>1726340902117</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726340902117</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Criando uma unica instância do usuario logado">
+      <option name="closed" value="true" />
+      <created>1726341005107</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726341005107</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,7 +190,8 @@
     <MESSAGE value="corrigindo bugs" />
     <MESSAGE value="Adicionando sistema de log" />
     <MESSAGE value="adicionando uma factory de logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="adicionando uma factory de logs" />
+    <MESSAGE value="Criando uma unica instância do usuario logado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criando uma unica instância do usuario logado" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
