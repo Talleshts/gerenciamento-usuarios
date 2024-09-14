@@ -157,6 +157,7 @@ public class UsuarioDAO {
                             dataCadastro,
                             resultSet.getBoolean("IS_ADMIN"),
                             resultSet.getBoolean("IS_AUTORIZADO")
+
                     );
                 }
             }

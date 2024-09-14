@@ -37,6 +37,7 @@ public class Usuario {
         this.dataCadastro = Calendar.getInstance().getTime();
         this.isAdmin = isAdmin;
         this.isAutorizado = isAutorizado;
+
     }
 
     public Usuario() {
