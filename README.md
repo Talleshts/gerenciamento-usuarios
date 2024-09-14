@@ -1,6 +1,9 @@
 # gerenciamento-usuarios
 2024-1 - Trabalho Final - Projeto de Sistemas de Software - Criação e Manutenção de usuários
 
+# Requisitos atendidos
+[Documento de Requisitos que foram feitos](https://docs.google.com/document/d/1lX-PHEkw0qljzv7lI0TzEKyOmNO9reu3Wta8iNAZxI4/edit?usp=sharing)
+
 # Sistema de Gerenciamento de Usuários
 
 ### Equipe Desenvolvedora
