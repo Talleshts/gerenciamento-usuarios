@@ -61,6 +61,7 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
 
         JOptionPane.showMessageDialog(view, "Cadastro realizado com sucesso!");
         view.setVisible(false); // Esconde a tela de manter usuário
+
         // Em vez de criar um novo BoasVindasPresenter, reutiliza o PrincipalPresenter
         principalPresenter.voltarParaBoasVindas();
     }

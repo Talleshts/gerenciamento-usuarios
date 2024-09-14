@@ -9,6 +9,7 @@ public class UsuarioLogado {
     private boolean isAutorizado;
 
     private static UsuarioLogado INSTANCE;
+    private Usuario dadosUsuarioLogado;
 
     private UsuarioLogado(){
 
@@ -19,13 +20,13 @@ public class UsuarioLogado {
         }
         return INSTANCE;
     }
+    
     public void setDadosUsuarioLogado(Usuario usuario){
-        this.id = usuario.getId();
-        this.nome = usuario.getNome();
-        this.senha = usuario.getSenha();
-        this.email = usuario.getEmail();
-        this.isAdmin = usuario.isAdmin();
-        this.isAutorizado = usuario.isAutorizado();
+        this.dadosUsuarioLogado = usuario;
+    }
+    
+    public Usuario getDadosUsuarioLogado() {
+        return dadosUsuarioLogado;
     }
 
     public int getId() {

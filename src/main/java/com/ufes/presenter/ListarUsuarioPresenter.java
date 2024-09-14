@@ -4,10 +4,15 @@
  */
 package com.ufes.presenter;
 
+import com.ufes.view.ListarUsuarioView;
+
 /**
  *
  * @author talle
  */
 public class ListarUsuarioPresenter {
+
+    public ListarUsuarioPresenter(ListarUsuarioView view) {
+    }
     
 }

@@ -4,16 +4,24 @@
  */
 package com.ufes.presenter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JDesktopPane;
 
 import com.ufes.model.Notificacao;
 import com.ufes.model.Usuario;
 import com.ufes.observer.IObserverNotificacao;
 import com.ufes.observer.IObserverUsuario;
+import com.ufes.presenter.state.ManterUsuarioEditarState;
+import com.ufes.presenter.state.ManterUsuarioInserirState;
 import com.ufes.view.ListarNotificacaoView;
+import com.ufes.view.ListarUsuarioView;
+import com.ufes.view.ManterUsuarioView;
 import com.ufes.view.PrincipalView;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -22,78 +30,159 @@ import javax.swing.JLabel;
  */
 public class PrincipalPresenter implements IObserverUsuario, IObserverNotificacao {
 
-    private PrincipalView principalView;
-    private ListarNotificacaoView listarNotificacaoView;
-    private ListarNotificacaoPresenter listarNotificacaoPresenter;
-    private Usuario usuario;
+	private PrincipalView principalView;
+	private ListarNotificacaoView listarNotificacaoView;
+	private ListarNotificacaoPresenter listarNotificacaoPresenter;
+	private Usuario usuario;
 
-    public PrincipalPresenter() throws IOException {
-        principalView = new PrincipalView();
-        principalView.setVisible(true);
+	public PrincipalPresenter() throws IOException {
+		principalView = new PrincipalView();
+		principalView.setVisible(true);
 
-        // Inicia a tela de boas-vindas ou a tela principal
-        atualizarEstadoUsuario(usuario);
+		// Inicia a tela de boas-vindas ou a tela principal
+		atualizarEstadoUsuario(usuario);
 
-        listarNotificacaoView = new ListarNotificacaoView();
-        listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
+		listarNotificacaoView = new ListarNotificacaoView();
+		listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
 
-        // Adiciona listener para o botão de notificações
-        principalView.getNotificationButton()
-                .addActionListener(evt -> listarNotificacaoPresenter.getView().setVisible(true));
-    }
+		// Adiciona listener para o botão de notificações
+		principalView.getNotificationButton()
+				.addActionListener(evt -> listarNotificacaoPresenter.getView().setVisible(true));
 
-    public void atualizarEstadoUsuario(Usuario usuario) throws IOException {
-        if (usuario == null) {
-            // Se não estiver logado, exibe apenas o JDesktopPane e oculta outros
-            // componentes
-            principalView.getDesktopPane().setVisible(true);
-            principalView.getNotificationButton().setVisible(false);
-            principalView.getJMenuBar().setVisible(false);
-            principalView.getNotifcacoesLbl().setVisible(false);
-            principalView.getUsuarioNomeLbl().setVisible(false);
-            principalView.getUsuarioNome().setVisible(false);
+		// Adiciona ActionListeners para os itens de menu
+		principalView.getjMenuItemDeslogar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				voltarParaBoasVindas();
+			}
+		});
 
-            // Mostra a tela de boas-vindas
-            new BoasVindasPresenter(principalView.getDesktopPane(), this);
+		principalView.getjMenuItemEditarUsuario().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abrirTelaEditarUsuario();
+			}
+		});
 
-        } else {
-            // Se estiver logado, exibe todos os componentes
-            principalView.getDesktopPane().setVisible(true);
-            principalView.getNotificationButton().setVisible(true);
-            principalView.getJMenuBar().setVisible(true);
-            principalView.getNotifcacoesLbl().setVisible(true);
-            principalView.getUsuarioNomeLbl().setVisible(true);
-            principalView.getUsuarioNome().setVisible(true);
+		principalView.getjMenuItemInserirUsuario().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abrirTelaInserirUsuario();
+			}
+		});
 
-            // Atualiza o nome do usuário na interface
-            principalView.setUsuarioNome(new JLabel(usuario.getNome()));
+		principalView.getjMenuItemListarUsuario().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abrirTelaListarUsuario();
+			}
+		});
+	}
+
+	public void atualizarEstadoUsuario(Usuario usuario) throws IOException {
+		if (usuario == null) {
+			// Se não estiver logado, exibe apenas o JDesktopPane e oculta outros
+			// componentes
+			principalView.getDesktopPane().setVisible(true);
+			principalView.getNotificationButton().setVisible(false);
+			principalView.getJMenuBar().setVisible(false);
+			principalView.getNotifcacoesLbl().setVisible(false);
+			principalView.getUsuarioNomeLbl().setVisible(false);
+			principalView.getUsuarioNome().setVisible(false);
+
+                        // Mostra a tela de boas-vindas
+                        BoasVindasPresenter boasVindasPresenter = new BoasVindasPresenter(principalView.getDesktopPane(), this);
+		} else {
+			// Se estiver logado, exibe todos os componentes
+			principalView.getDesktopPane().setVisible(true);
+			principalView.getNotificationButton().setVisible(true);
+			principalView.getJMenuBar().setVisible(true);
+			principalView.getNotifcacoesLbl().setVisible(true);
+			principalView.getUsuarioNomeLbl().setVisible(true);
+			principalView.getUsuarioNome().setVisible(true);
+
+			// Atualiza o nome do usuário na interface
+			principalView.setUsuarioNome(usuario.getNome());
+		}
+	}
+
+	@Override
+	public void update(Usuario usuario) {
+		this.usuario = usuario;
+		try {
+			atualizarEstadoUsuario(usuario); // Atualiza a view ao receber novo estado do usuário
+		} catch (IOException ex) {
+			Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	@Override
+	public void update(Notificacao notificacao) {
+		String labelText = principalView.getNotifcacoesLbl().getText();
+		int number = Integer.parseInt(labelText) + 1;
+		principalView.setNotifcacoesLbl(new JLabel(String.valueOf(number)));
+	}
+
+	// Método para voltar para a tela de boas-vindas
+	public void voltarParaBoasVindas() {
+		try {
+			usuario = null;
+			atualizarEstadoUsuario(usuario); // Redefine o estado para mostrar a tela de boas-vindas
+		} catch (IOException ex) {
+			Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+        private void abrirTelaEditarUsuario() {
+            // Implemente a lógica para abrir a tela de editar usuário
+            JDesktopPane desktopPane = principalView.getDesktopPane();
+            desktopPane.removeAll();
+
+            ManterUsuarioView view = new ManterUsuarioView();
+            desktopPane.add(view);
+
+            view.setVisible(true);
+
+            ManterUsuarioPresenter presenter = new ManterUsuarioPresenter(view, desktopPane, this);
+            presenter.setState(new ManterUsuarioEditarState(view));
+
+            // Garantir que o desktopPane seja atualizado
+            desktopPane.revalidate();
+            desktopPane.repaint();
         }
-    }
 
-    @Override
-    public void update(Usuario usuario) {
-        this.usuario = usuario;
-        try {
-            atualizarEstadoUsuario(usuario); // Atualiza a view ao receber novo estado do usuário
-        } catch (IOException ex) {
-            Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
+        private void abrirTelaInserirUsuario() {
+            // Implemente a lógica para abrir a tela de inserir usuário
+            JDesktopPane desktopPane = principalView.getDesktopPane();
+            desktopPane.removeAll();
+
+            ManterUsuarioView view = new ManterUsuarioView();
+            desktopPane.add(view);
+
+            view.setVisible(true);
+
+            ManterUsuarioPresenter presenter = new ManterUsuarioPresenter(view, desktopPane, this);
+            presenter.setState(new ManterUsuarioInserirState(view));
+
+            // Garantir que o desktopPane seja atualizado
+            desktopPane.revalidate();
+            desktopPane.repaint();
         }
-    }
 
-    @Override
-    public void update(Notificacao notificacao) {
-        String labelText = principalView.getNotifcacoesLbl().getText();
-        int number = Integer.parseInt(labelText) + 1;
-        principalView.setNotifcacoesLbl(String.valueOf(number));
-    }
+        private void abrirTelaListarUsuario() {
+            // Implemente a lógica para abrir a tela de listar usuários
+            JDesktopPane desktopPane = principalView.getDesktopPane();
+            desktopPane.removeAll();
 
-    // Método para voltar para a tela de boas-vindas
-    public void voltarParaBoasVindas() {
-        try {
-            usuario = null;
-            atualizarEstadoUsuario(usuario); // Redefine o estado para mostrar a tela de boas-vindas
-        } catch (IOException ex) {
-            Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
+            ListarUsuarioView view = new ListarUsuarioView();
+            desktopPane.add(view);
+
+            view.setVisible(true);
+
+            ListarUsuarioPresenter presenter = new ListarUsuarioPresenter(view);
+
+            // Garantir que o desktopPane seja atualizado
+            desktopPane.revalidate();
+            desktopPane.repaint();
         }
-    }
 }
