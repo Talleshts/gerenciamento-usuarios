@@ -47,9 +47,10 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
         // Lógica de cadastro
         String nome = view.getjTxtFNome().getText();
         String senha = String.valueOf(view.getjPassFSenha().getPassword());
+        String email = String.valueOf(view.getjTxtFEmail().getText());     //olha isso aqui pra ver se ta certo
         ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
         validadorEntryService.validarCadastro(); // Validar entradas
-        Usuario usuario = new Usuario(nome, senha, false, true);
+        Usuario usuario = new Usuario(nome, senha, email, false, true);
         
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.insert(usuario); // Salvando o usuário no banco

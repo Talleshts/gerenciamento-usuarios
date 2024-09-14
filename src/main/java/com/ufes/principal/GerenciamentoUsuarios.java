@@ -3,13 +3,7 @@
  */
 
 package com.ufes.principal;
-
-import com.ufes.DAO.UsuarioDAO;
-import com.ufes.model.Usuario;
 import com.ufes.presenter.PrincipalPresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

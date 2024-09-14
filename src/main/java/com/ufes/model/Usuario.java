@@ -15,22 +15,25 @@ public class Usuario {
     private int id;
     private String nome;
     private String senha;
+    private String email;
     private Date dataCadastro;
     private boolean isAdmin;
     private boolean isAutorizado;
 
-    public Usuario(int id, String nome, String senha, Date dataCadastro, boolean isAdmin, boolean isAutorizado) {
+    public Usuario(int id, String nome, String senha,String email, Date dataCadastro, boolean isAdmin, boolean isAutorizado) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
+        this.email = email;
         this.dataCadastro = dataCadastro;
         this.isAdmin = isAdmin;
         this.isAutorizado = isAutorizado;
     }
     
-    public Usuario(String nome, String senha, boolean isAdmin, boolean isAutorizado) {
+    public Usuario(String nome, String senha,String email, boolean isAdmin, boolean isAutorizado) {
         this.nome = nome;
         this.senha = senha;
+        this.email = email;
         this.dataCadastro = Calendar.getInstance().getTime();
         this.isAdmin = isAdmin;
         this.isAutorizado = isAutorizado;
@@ -75,6 +78,14 @@ public class Usuario {
     public Usuario temId(int id) {
         this.id = id;
         return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getDataCadastro() {

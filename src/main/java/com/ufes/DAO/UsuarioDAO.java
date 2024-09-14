@@ -54,6 +54,7 @@ public class UsuarioDAO {
                         resultSet.getInt("ID"),
                         resultSet.getString("NOME"),
                         resultSet.getString("SENHA"),
+                        resultSet.getString("EMAIL"),
                         dataCadastro,
                         isAdmin,
                         isAutorizado
@@ -66,13 +67,14 @@ public class UsuarioDAO {
         return usuarios;
     }
     public void update(Usuario usuario) {
-        String sql = "UPDATE USUARIOS SET NOME = ?, SENHA = ?, IS_ADMIN = ?, IS_AUTORIZADO = ? WHERE ID = ?";
+        String sql = "UPDATE USUARIOS SET NOME = ?, SENHA = ?,EMAIL = ?, IS_ADMIN = ?, IS_AUTORIZADO = ? WHERE ID = ?";
 
         try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement stt = conn.prepareStatement(sql)) {
 
             stt.setString(1, usuario.getNome());
             stt.setString(2, usuario.getSenha());
+            stt.setString(2, usuario.getEmail());
             stt.setInt(3, usuario.isAdmin() ? 1 : 0);
             stt.setInt(4, usuario.isAutorizado() ? 1 : 0);
             stt.setInt(5, usuario.getId());
@@ -85,7 +87,7 @@ public class UsuarioDAO {
     }
 
     public void insert(Usuario usuario) {
-        String sql = "INSERT INTO USUARIOS (NOME, SENHA, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?)";
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dataCadastro = formatter.format(usuario.getDataCadastro());
 
@@ -94,6 +96,7 @@ public class UsuarioDAO {
 
             stt.setString(1, usuario.getNome());
             stt.setString(2, usuario.getSenha());
+            stt.setString(2, usuario.getEmail());
             stt.setInt(3, usuario.isAdmin() ? 1 : 0);
             stt.setInt(4, usuario.isAutorizado() ? 1 : 0);
             stt.setString(5, dataCadastro);
@@ -120,6 +123,7 @@ public class UsuarioDAO {
                             resultSet.getInt("ID"),
                             resultSet.getString("NOME"),
                             resultSet.getString("SENHA"),
+                            resultSet.getString("EMAIL"),
                             dataCadastro,
                             resultSet.getBoolean("IS_ADMIN"),
                             resultSet.getBoolean("IS_AUTORIZADO")
@@ -149,6 +153,7 @@ public class UsuarioDAO {
                             resultSet.getInt("ID"),
                             resultSet.getString("NOME"),
                             resultSet.getString("SENHA"),
+                            resultSet.getString("EMAIL"),
                             dataCadastro,
                             resultSet.getBoolean("IS_ADMIN"),
                             resultSet.getBoolean("IS_AUTORIZADO")

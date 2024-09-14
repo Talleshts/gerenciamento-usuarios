@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_14_09_2024_10_45_[Changes]" date="1726321536969" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_09_2024_10_45_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 14/09/2024 10:45 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/view/PrincipalView.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/principal/GerenciamentoUsuarios.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/view/PrincipalView$1.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/presenter/PrincipalPresenter.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

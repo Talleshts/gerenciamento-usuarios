@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_Update_at_13_09_2024_23_00_[Changes]" date="1726279230856" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_09_2024_23_00_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 13/09/2024 23:00 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/view/PrincipalView$1.class" />
+    <option name="AFTER_PATH" value="target/classes/com/ufes/view/PrincipalView$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_09_2024_23_00_[Changes]/PrincipalView$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/DAO/UsuarioDAO.class" />
+    <option name="AFTER_PATH" value="target/classes/com/ufes/DAO/UsuarioDAO.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_09_2024_23_00_[Changes]/UsuarioDAO.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/principal/GerenciamentoUsuarios.class" />
+    <option name="AFTER_PATH" value="target/classes/com/ufes/principal/GerenciamentoUsuarios.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_09_2024_23_00_[Changes]/GerenciamentoUsuarios.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/presenter/PrincipalPresenter.class" />
+    <option name="AFTER_PATH" value="target/classes/com/ufes/presenter/PrincipalPresenter.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_09_2024_23_00_[Changes]/PrincipalPresenter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/ufes/view/PrincipalView.class" />
+    <option name="AFTER_PATH" value="target/classes/com/ufes/view/PrincipalView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_09_2024_23_00_[Changes]/PrincipalView.class" />
+  </binary>
+</changelist>

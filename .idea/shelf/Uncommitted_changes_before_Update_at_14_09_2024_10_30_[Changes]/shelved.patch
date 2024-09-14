@@ -1,0 +1,133 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2071cf8c-7d47-407f-96e2-161dfbc828af\" name=\"Changes\" comment=\"criando UsuarioDAO\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/sample.db\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sample.db\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/ufes/DAO/UsuarioDAO.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/ufes/DAO/UsuarioDAO.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2lcP6PS3NuQiBxmb6oebQEo3lP8\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.GerenciamentoUsuarios.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.PrincipalView.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.Sample.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\"Application.GerenciamentoUsuarios\">\r\n    <configuration name=\"GerenciamentoUsuarios\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.ufes.principal.GerenciamentoUsuarios\" />\r\n      <module name=\"GerenciamentoUsuarios\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.ufes.principal.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PrincipalView\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.ufes.view.PrincipalView\" />\r\n      <module name=\"GerenciamentoUsuarios\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.ufes.view.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Sample\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.ufes.principal.Sample\" />\r\n      <module name=\"GerenciamentoUsuarios\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.ufes.principal.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"gerenciamento-usuarios\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"gerenciamento-usuarios\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.GerenciamentoUsuarios\" />\r\n        <item itemvalue=\"Application.PrincipalView\" />\r\n        <item itemvalue=\"Application.Sample\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2071cf8c-7d47-407f-96e2-161dfbc828af\" name=\"Changes\" comment=\"\" />\r\n      <created>1725476220506</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1725476220506</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Criando conexão com o banco de dados\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725481352943</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725481352945</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"criando UsuarioDAO\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725892072934</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725892072934</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Criando conexão com o banco de dados\" />\r\n    <MESSAGE value=\"criando UsuarioDAO\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"criando UsuarioDAO\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 456ee08ed734d0ace24e1776d904f69e8ffcb6da)
++++ b/.idea/workspace.xml	(date 1726279404018)
+@@ -4,13 +4,13 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="criando UsuarioDAO">
++    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="Adicionando sistema de log">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sample.db" beforeDir="false" afterPath="$PROJECT_DIR$/sample.db" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/DAO/UsuarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ufes/DAO/UsuarioDAO.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/presenter/PrincipalPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ufes/presenter/PrincipalPresenter.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView$1.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -20,6 +20,7 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="Interface" />
+         <option value="Class" />
+       </list>
+     </option>
+@@ -43,10 +44,14 @@
+     &quot;Application.Sample.executor&quot;: &quot;Run&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Caio Cordeiro/Desktop/SistemaLog.jar&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+   }
+ }</component>
+-  <component name="RunManager" selected="Application.GerenciamentoUsuarios">
++  <component name="RunManager" selected="Application.PrincipalView">
+     <configuration name="GerenciamentoUsuarios" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="com.ufes.principal.GerenciamentoUsuarios" />
+       <module name="GerenciamentoUsuarios" />
+@@ -101,8 +106,8 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.GerenciamentoUsuarios" />
+         <item itemvalue="Application.PrincipalView" />
++        <item itemvalue="Application.GerenciamentoUsuarios" />
+         <item itemvalue="Application.Sample" />
+       </list>
+     </recent_temporary>
+@@ -132,13 +137,42 @@
+       <option name="project" value="LOCAL" />
+       <updated>1725892072934</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="corrigindo bugs">
++      <option name="closed" value="true" />
++      <created>1725913879240</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1725913879240</updated>
++    </task>
++    <task id="LOCAL-00004" summary="Adicionando sistema de log">
++      <option name="closed" value="true" />
++      <created>1726270015637</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1726270015637</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Criando conexão com o banco de dados" />
+     <MESSAGE value="criando UsuarioDAO" />
+-    <option name="LAST_COMMIT_MESSAGE" value="criando UsuarioDAO" />
++    <MESSAGE value="corrigindo bugs" />
++    <MESSAGE value="Adicionando sistema de log" />
++    <option name="LAST_COMMIT_MESSAGE" value="Adicionando sistema de log" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: src/main/java/com/ufes/principal/GerenciamentoUsuarios.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license\r\n */\r\n\r\npackage com.ufes.principal;\r\n\r\nimport com.ufes.DAO.UsuarioDAO;\r\nimport com.ufes.model.Usuario;\r\nimport com.ufes.presenter.PrincipalPresenter;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n\r\n/**\r\n *\r\n * @author tallesh\r\n */\r\npublic class GerenciamentoUsuarios {\r\n\r\n    public static void main(String[] args) throws Exception{\r\n        try{\r\n            new PrincipalPresenter();\r\n        }catch (Exception e){\r\n              System.out.println(\"Hello World!\");\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java b/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java
+--- a/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java	(revision 456ee08ed734d0ace24e1776d904f69e8ffcb6da)
++++ b/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java	(date 1726279230706)
+@@ -3,14 +3,8 @@
+  */
+ 
+ package com.ufes.principal;
+-
+-import com.ufes.DAO.UsuarioDAO;
+-import com.ufes.model.Usuario;
+ import com.ufes.presenter.PrincipalPresenter;
+ 
+-import java.util.ArrayList;
+-import java.util.List;
+-
+ 
+ /**
+  *

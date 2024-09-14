@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="criando UsuarioDAO">
+    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="adicionando uma factory de logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample.db" beforeDir="false" afterPath="$PROJECT_DIR$/sample.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/principal/GerenciamentoUsuarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/DAO/UsuarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ufes/DAO/UsuarioDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/presenter/PrincipalPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/principal/GerenciamentoUsuarios.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ufes/view/PrincipalView.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -43,7 +44,11 @@
     &quot;Application.Sample.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Caio Cordeiro/Desktop/SistemaLog.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
   <component name="RunManager" selected="Application.GerenciamentoUsuarios">
@@ -132,13 +137,51 @@
       <option name="project" value="LOCAL" />
       <updated>1725892072934</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="corrigindo bugs">
+      <option name="closed" value="true" />
+      <created>1725913879240</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725913879240</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adicionando sistema de log">
+      <option name="closed" value="true" />
+      <created>1726270015637</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726270015637</updated>
+    </task>
+    <task id="LOCAL-00005" summary="adicionando uma factory de logs">
+      <option name="closed" value="true" />
+      <created>1726325554468</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726325554468</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Criando conexão com o banco de dados" />
     <MESSAGE value="criando UsuarioDAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="criando UsuarioDAO" />
+    <MESSAGE value="corrigindo bugs" />
+    <MESSAGE value="Adicionando sistema de log" />
+    <MESSAGE value="adicionando uma factory de logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="adicionando uma factory de logs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
