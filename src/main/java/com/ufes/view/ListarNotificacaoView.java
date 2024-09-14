@@ -4,6 +4,8 @@
  */
 package com.ufes.view;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author talle
@@ -96,6 +98,10 @@ public class ListarNotificacaoView extends javax.swing.JInternalFrame {
     private void btnAutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutorizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAutorizarActionPerformed
+
+    public JTable getTable() {
+        return tblUsuarios;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
