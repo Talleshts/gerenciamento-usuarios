@@ -13,15 +13,15 @@ import javax.swing.JOptionPane;
  * @author talle
  */
 public class ValidadorSenhaService {
-    public static void validar(String senha) throws Exception{
+    
+    public void validar(String senha) throws Exception {
         List<String> lista = new ValidadorSenha().validar(senha);
-         if(!lista.isEmpty()){
-             String senhaRecusada = "";
-             for (String erroSenha: lista) {
-                 senhaRecusada = senhaRecusada + erroSenha + "\n";
-             }
-             JOptionPane.showInternalMessageDialog(null, senhaRecusada,"Senha inválida", JOptionPane.WARNING_MESSAGE);
-             throw new Exception(senhaRecusada);
+        if (!lista.isEmpty()) {
+            String senhaRecusada = String.join("\n", lista);
+            JOptionPane.showMessageDialog(null, senhaRecusada, "Senha inválida", JOptionPane.WARNING_MESSAGE);
+            throw new Exception(senhaRecusada);
         }
-    }  
+    }
+    
+    
 }

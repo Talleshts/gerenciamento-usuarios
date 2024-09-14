@@ -4,10 +4,28 @@
  */
 package com.ufes.presenter.state;
 
+import com.ufes.view.ManterUsuarioView;
+
 /**
  *
  * @author talle
  */
-public class ManterUsuarioVisualizarState {
-    
+public class ManterUsuarioVisualizarState implements ManterUsuarioState{
+     @Override
+    public void aplicarState(ManterUsuarioView view) {
+        // Mudar o título da tela
+        view.setTitulo("Visualizar Usuário");
+
+        // Desabilitar campos para torná-los somente leitura
+        view.setNomeEditable(false);
+        view.setEmailEditable(false);
+        view.setSenhaEditable(false);
+        view.setConfirmaSenhaEditable(false);
+
+        // Ocultar ou desativar botão de salvar
+        view.setSalvarButtonEnabled(false);
+
+        // Configura os botões
+        view.setCancelarButtonText("Fechar");
+    }
 }

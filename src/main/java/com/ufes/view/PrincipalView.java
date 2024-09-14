@@ -11,13 +11,29 @@ import javax.swing.JButton;
  * @author tallesh
  */
 public class PrincipalView extends javax.swing.JFrame {
-
 	/**
 	 * Creates new form PrincipalView
 	 */
 	public PrincipalView() {
-		initComponents();
+            initComponents();
+            atualizarEstado();
 	}
+        
+    private void atualizarEstado() {
+       /* if (usuarioLogado == null) {
+            // Se o usuário não estiver logado, exibe apenas o JDesktopPane
+            UsuarioNomeLabel.setVisible(false);
+            btnNotificacao.setVisible(false);
+            jMenuBar1.setVisible(false);
+        } else {
+            // Se o usuário estiver logado, exibe todos os componentes
+            UsuarioNomeLabel.setText("Usuário: " + usuarioLogado);
+            UsuarioNomeLabel.setVisible(true);
+            btnNotificacao.setVisible(true);
+            jMenuBar1.setVisible(true);
+        }
+        */
+    }
 
 	public javax.swing.JDesktopPane getDesktopPane() {
 		return jDesktopPane1;

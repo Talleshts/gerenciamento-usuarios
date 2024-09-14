@@ -4,10 +4,12 @@
  */
 package com.ufes.presenter.state;
 
+import com.ufes.view.ManterUsuarioView;
+
 /**
  *
  * @author talle
  */
-public abstract class ManterUsuarioState {
-    
+public interface ManterUsuarioState {
+	void aplicarState(ManterUsuarioView view);
 }
