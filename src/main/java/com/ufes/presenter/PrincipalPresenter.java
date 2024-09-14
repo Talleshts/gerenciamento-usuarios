@@ -40,6 +40,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 	public PrincipalPresenter() throws IOException {
 		principalView = new PrincipalView();
 		principalView.setVisible(true);
+		observavelNotificacao = new ObservavelNotificacao();
 		observavelNotificacao.adicionarObserver(this);
 
 		// Inicia a tela de boas-vindas ou a tela principal
