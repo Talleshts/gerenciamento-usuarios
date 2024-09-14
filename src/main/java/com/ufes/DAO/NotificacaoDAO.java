@@ -21,24 +21,32 @@ import java.util.List;
  * @author talle
  */
 public class NotificacaoDAO {
-    public static void createTableNotificacao() throws SQLException {
-        String query = """
-                CREATE TABLE IF NOT EXISTS Notificacao (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    id_usuario INTEGER NOT NULL REFERENCES Usuario(id),
-                    titulo VARCHAR NOT NULL,
-                    mensagem VARCHAR NOT NULL,
-                    visualizou INT DEFAULT 0,
-                    dataEnvio VARCHAR NOT NULL
-                );
-                """;
-        try (Connection conn = ConnectionDBService.getConnection();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(query);
+    private Connection connection;
+    
+    public NotificacaoDAO() throws SQLException {
+        this.connection = ConnectionDBService.getConnection();
+        createTableNotificacao(); // Criar tabela no construtor
+    }
+
+    public final void createTableNotificacao() {
+        String sql = "CREATE TABLE IF NOT EXISTS notificacoes "
+                   + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                   + "mensagem TEXT, "
+                   + "titulo TEXT, "
+                   + "id_usuario INTEGER, "
+                   + "dataEnvio TEXT, "
+                   + "visualizada INTEGER)";
+         try (Connection conn = ConnectionDBService.getConnection();
+         Statement stt = conn.createStatement()) {
+
+            stt.execute(sql);
+            System.out.println("TABELA notificacoes CRIADA");
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao criar tabela notificações: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
+
+
 
     public void insert(Notificacao notificacao) throws Exception {
         String SQL = "INSERT INTO Notificacao(mensagem, titulo, id_usuario, dataEnvio) VALUES (?, ?, ?, ?)";

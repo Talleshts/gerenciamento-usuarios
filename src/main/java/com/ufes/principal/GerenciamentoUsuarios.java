@@ -4,6 +4,7 @@
 
 package com.ufes.principal;
 
+import com.ufes.DAO.NotificacaoDAO;
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
 import com.ufes.presenter.PrincipalPresenter;
@@ -20,9 +21,12 @@ public class GerenciamentoUsuarios {
 
     public static void main(String[] args) throws Exception{
         try{
+            new UsuarioDAO();
+            new NotificacaoDAO();
             new PrincipalPresenter();
         }catch (Exception e){
-              System.out.println("Hello World!");
+            System.out.println("Erro ao iniciar o sistema: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

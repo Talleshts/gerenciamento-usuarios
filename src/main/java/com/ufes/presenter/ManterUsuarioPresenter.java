@@ -2,6 +2,7 @@ package com.ufes.presenter;
 
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
+import com.ufes.presenter.state.ManterUsuarioInserirState;
 import com.ufes.presenter.state.ManterUsuarioState;
 import com.ufes.services.ValidadorEntryService;
 import com.ufes.view.BoasVindasView;
@@ -53,8 +54,11 @@ public class ManterUsuarioPresenter {
         }
 
         try {
-            ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
-            validadorEntryService.validarCadastro(); // Validar entradas
+            // Verifica se o estado atual é o de cadastro
+            if (currentState instanceof ManterUsuarioInserirState) {
+                ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
+                validadorEntryService.validarCadastro(); // Validar entradas
+            }
 
             // Delegar a lógica específica para o estado atual
             currentState.executarAcao(view);
@@ -64,6 +68,7 @@ public class ManterUsuarioPresenter {
             JOptionPane.showMessageDialog(view, e.getMessage(), "Erro de Validação", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     private void cancelar() throws IOException {
         System.out.println("Botão Cancelar clicado");
