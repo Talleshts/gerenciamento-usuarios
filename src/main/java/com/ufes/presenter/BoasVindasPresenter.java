@@ -54,7 +54,7 @@ public class BoasVindasPresenter {
         manterUsuarioView.setVisible(true);
         boasVindasView.setVisible(false); // Oculta a tela de boas-vindas
 
-        ManterUsuarioPresenter manterUsuarioPresenter = new ManterUsuarioPresenter(manterUsuarioView, desktopPane);
+        ManterUsuarioPresenter manterUsuarioPresenter = new ManterUsuarioPresenter(manterUsuarioView, desktopPane, principalPresenter);
 
         if (isSignUp) {
             manterUsuarioPresenter.setState(new ManterUsuarioInserirState(manterUsuarioView));

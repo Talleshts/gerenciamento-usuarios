@@ -1,5 +1,6 @@
 package com.ufes.presenter;
 
+import com.ufes.model.UsuarioLogado;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,29 +23,30 @@ public class ManterUsuarioPresenter {
 	private ManterUsuarioState currentState;
 	private JDesktopPane desktopPane;
 	private BoasVindasView boasVindasView;
+        private PrincipalPresenter principalPresenter;
 
-	public ManterUsuarioPresenter(ManterUsuarioView view, JDesktopPane desktopPane) {
-		this.view = view;
-		this.desktopPane = desktopPane;
+        public ManterUsuarioPresenter(ManterUsuarioView view, JDesktopPane desktopPane, PrincipalPresenter principalPresenter) {
+            this.view = view;
+            this.desktopPane = desktopPane;
+            this.principalPresenter = principalPresenter; // Inicialize a variável principalPresenter
+            this.boasVindasView = BoasVindasView.getInstance();
 
-		this.boasVindasView = BoasVindasView.getInstance();
+            this.view.getjBtnCadastrar().addActionListener(e -> {
+                try {
+                    executarAcao();
+                } catch (IOException ex) {
+                    Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            this.view.getjBtnCancelar().addActionListener(e -> {
+                try {
+                    cancelar();
+                } catch (IOException ex) {
+                    Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+        }
 
-		this.view.getjBtnCadastrar().addActionListener(e -> {
-			try {
-				executarAcao();
-			} catch (IOException ex) {
-				Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		});
-		this.view.getjBtnCancelar().addActionListener(e -> {
-			try {
-				cancelar();
-			} catch (IOException ex) {
-				Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		});
-
-	}
 
 	// Ao clicar em "Cadastrar" ou "Logar"
 	private void executarAcao() throws IOException {
@@ -69,29 +71,35 @@ public class ManterUsuarioPresenter {
 		}
 	}
 
-	private void cancelar() throws IOException {
-		System.out.println("Botão Cancelar clicado");
+        private void cancelar() throws IOException {
+            System.out.println("Botão Cancelar clicado");
 
-		// Esconde a tela de manter usuário
-		view.setVisible(false);
+            // Esconde a tela de manter usuário
+            view.setVisible(false);
 
-		// Remove a tela de manter usuário do desktopPane
-		desktopPane.remove(view);
+            // Remove a tela de manter usuário do desktopPane
+            desktopPane.remove(view);
 
-		// Verifica se a tela de boas-vindas já está no desktopPane
-		if (desktopPane.getComponentZOrder(boasVindasView) == -1) {
-			desktopPane.add(boasVindasView); // Adiciona a tela de boas-vindas ao desktopPane
-		}
+            // Verifica se o usuário logado é null
+            UsuarioLogado usuarioLogado = UsuarioLogado.getINSTANCE();
+            if (usuarioLogado.getDadosUsuarioLogado() == null) {
+                // Adiciona a tela de boas-vindas ao desktopPane se o usuário não estiver logado
+                if (desktopPane.getComponentZOrder(boasVindasView) == -1) {
+                    desktopPane.add(boasVindasView); // Adiciona a tela de boas-vindas ao desktopPane
+                }
+                boasVindasView.setVisible(true); // Garante que a tela de boas-vindas está visível
+            } else if (principalPresenter != null) {
+                // Atualiza o estado do usuário na tela principal se o principalPresenter não for null
+                principalPresenter.atualizarEstadoUsuario(usuarioLogado.getDadosUsuarioLogado());
+            }
 
-		boasVindasView.setVisible(true); // Garante que a tela de boas-vindas está visível
-
-		// Atualiza o layout do desktopPane para refletir as mudanças
-		desktopPane.revalidate();
-		desktopPane.repaint();
-	}
+            // Atualiza o layout do desktopPane para refletir as mudanças
+            desktopPane.revalidate();
+            desktopPane.repaint();
+        }
 
 	public void setState(ManterUsuarioState state) {
 		this.currentState = state;
 		this.currentState.aplicarState(view);
-	}
+        }
 }

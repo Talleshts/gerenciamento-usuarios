@@ -11,6 +11,9 @@ import com.ufes.view.ManterUsuarioView;
  * @author talle
  */
 public class ManterUsuarioEditarState implements ManterUsuarioState {
+
+    public ManterUsuarioEditarState(ManterUsuarioView view) {
+    }
     @Override
     public void aplicarState(ManterUsuarioView view) {
         // Mudar o título da tela
