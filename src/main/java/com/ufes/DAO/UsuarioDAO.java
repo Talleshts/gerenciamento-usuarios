@@ -30,7 +30,7 @@ public class UsuarioDAO {
              Statement stt = conn.createStatement()) {
 
             stt.execute(sql);
-
+            System.out.println("TABELA USUARIO CRIADA");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
