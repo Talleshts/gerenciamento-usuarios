@@ -28,32 +28,23 @@ public class BoasVindasPresenter {
 		desktopPane.add(manterUsuarioView);
 
 		boasVindasView.setVisible(true);
-		boasVindasView.getLoginBtn().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-				boasVindasView.setVisible(false);
-				manterUsuarioView.getMainLabel().setText("Logar Usuário");
-				manterUsuarioView.getPrimaryButton().setText("Login");
-				manterUsuarioView.getNameLabel().setVisible(false);
-				manterUsuarioView.getNameField().setVisible(false);
-				manterUsuarioView.getConfirmPasswordLabel().setVisible(false);
-				manterUsuarioView.getConfirmPasswordField().setVisible(false);
-				manterUsuarioView.setVisible(true);
-            }
-        });
-
-		boasVindasView.getSigninBtn().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-				boasVindasView.setVisible(false);
-				manterUsuarioView.getMainLabel().setText("Cadastrar Usuário");
-				manterUsuarioView.getPrimaryButton().setText("Salvar");
-				manterUsuarioView.getNameLabel().setVisible(true);
-				manterUsuarioView.getNameField().setVisible(true);
-				manterUsuarioView.getConfirmPasswordLabel().setVisible(true);
-				manterUsuarioView.getConfirmPasswordField().setVisible(true);
-				manterUsuarioView.setVisible(true);
-            }
-        });
+		boasVindasView.getLoginBtn().addActionListener(e -> configureUserView(false));
+        boasVindasView.getSigninBtn().addActionListener(e -> configureUserView(true));
 	}
+
+	private void configureUserView(boolean showSignUpFields) {
+		String buttonText = showSignUpFields ? "Salvar" : "Login";
+		String mainLabelText = showSignUpFields ? "Cadastrar Usuário" : "Logar Usuário";
+        boasVindasView.setVisible(false);
+        manterUsuarioView.getMainLabel().setText(mainLabelText);
+        manterUsuarioView.getPrimaryButton().setText(buttonText);
+
+        // Toggle visibility of sign-up specific fields
+        manterUsuarioView.getNameLabel().setVisible(showSignUpFields);
+        manterUsuarioView.getNameField().setVisible(showSignUpFields);
+        manterUsuarioView.getConfirmPasswordLabel().setVisible(showSignUpFields);
+        manterUsuarioView.getConfirmPasswordField().setVisible(showSignUpFields);
+
+        manterUsuarioView.setVisible(true);
+    }
 }
