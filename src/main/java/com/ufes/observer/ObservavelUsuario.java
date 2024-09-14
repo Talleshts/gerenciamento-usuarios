@@ -13,18 +13,18 @@ import com.ufes.model.Usuario;
  * @author talle
  */
 public class ObservavelUsuario {
-    private List<IObserver> observadores = new ArrayList<>();
+    private List<IObserverUsuario> observadores = new ArrayList<>();
     
-    public void adicionarObserver(IObserver observer) {
+    public void adicionarObserver(IObserverUsuario observer) {
         observadores.add(observer);
     }
 
-    public void removerObserver(IObserver observer) {
+    public void removerObserver(IObserverUsuario observer) {
         observadores.remove(observer);
     }
 
     public void notificarObservers(Usuario usuario) {
-        for(IObserver observer:observadores) {
+        for(IObserverUsuario observer:observadores) {
             observer.update(usuario);
         }
     }

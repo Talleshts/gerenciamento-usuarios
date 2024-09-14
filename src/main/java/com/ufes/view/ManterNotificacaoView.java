@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author talle
@@ -19,9 +22,6 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ManterNotificacaoView
      */
-    public ManterNotificacaoView() {
-        initComponents();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +39,7 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTmensagem = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTmensagem1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
@@ -151,6 +151,22 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getSendButton() {
+        return jBtenviar;
+    }
+
+    public String getTitulo(){
+        return jTmensagem1.getText();
+    }
+
+    public String getMessage(){
+        return jTmensagem.getText();
+    }
+
+    public Usuario getUserID(){
+        return (Usuario) jComboBox1.getSelectedItem();
+    }
+
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnCancelarActionPerformed
@@ -182,7 +198,7 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtenviar;
     private javax.swing.JButton jBtnCancelar;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox<Usuario> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

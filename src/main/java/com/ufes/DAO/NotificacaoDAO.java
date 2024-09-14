@@ -6,6 +6,7 @@ package com.ufes.DAO;
 
 import com.ufes.model.Notificacao;
 import com.ufes.model.Usuario;
+import com.ufes.observer.ObservavelNotificacao;
 import com.ufes.services.ConnectionDBService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,20 +23,20 @@ import java.util.List;
  */
 public class NotificacaoDAO {
     private Connection connection;
-    
+
     public NotificacaoDAO() throws SQLException {
     }
 
     public void createTableNotificacao() {
         String sql = "CREATE TABLE IF NOT EXISTS notificacoes "
-                   + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                   + "mensagem TEXT, "
-                   + "titulo TEXT, "
-                   + "id_usuario INTEGER, "
-                   + "dataEnvio TEXT, "
-                   + "visualizada INTEGER)";
-         try (Connection conn = ConnectionDBService.getConnection();
-              Statement stt = conn.createStatement()) {
+                + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "mensagem TEXT, "
+                + "titulo TEXT, "
+                + "id_usuario INTEGER, "
+                + "dataEnvio TEXT, "
+                + "visualizada INTEGER)";
+        try (Connection conn = ConnectionDBService.getConnection();
+                Statement stt = conn.createStatement()) {
 
             stt.execute(sql);
             System.out.println("TABELA notificacoes CRIADA");
@@ -44,17 +45,16 @@ public class NotificacaoDAO {
         }
     }
 
-
-
     public void insert(Notificacao notificacao) throws Exception {
         String SQL = "INSERT INTO Notificacao(mensagem, titulo, id_usuario, dataEnvio) VALUES (?, ?, ?, ?)";
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
-            ps.setString(1, notificacao.getMensagem());            
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
+            ps.setString(1, notificacao.getMensagem());
             ps.setString(2, notificacao.getTitulo());
-            ps.setInt(3, notificacao.getUsuario().getId());
+            ps.setInt(3, notificacao.getUsuario());
             ps.setString(4, LocalDateTime.now().toString());
             ps.executeUpdate();
+            new ObservavelNotificacao().notificarObservers(notificacao);
         } catch (Exception e) {
             throw new Exception("Erro ao inserir");
         }
@@ -63,7 +63,7 @@ public class NotificacaoDAO {
     public void update(Notificacao notificacao) throws Exception {
         String SQL = "UPDATE Notificacao SET visualizou = ? WHERE id = ?";
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setBoolean(1, notificacao.isVisualizou());
             ps.setInt(2, notificacao.getId());
             ps.executeUpdate();
@@ -75,9 +75,9 @@ public class NotificacaoDAO {
     public void delete(Notificacao notificacao) throws Exception {
         String SQL = "DELETE FROM Notificacao WHERE id = ? AND id_usuario = ?";
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, notificacao.getId());
-            ps.setInt(2, notificacao.getUsuario().getId());
+            ps.setInt(2, notificacao.getUsuario());
             ps.executeUpdate();
         } catch (Exception e) {
             throw new Exception("Erro ao excluir");
@@ -87,7 +87,7 @@ public class NotificacaoDAO {
     public void deleteAllByIdUsuario(int idUsuario) throws Exception {
         String SQL = "DELETE FROM Notificacao WHERE id_usuario = ?";
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, idUsuario);
             ps.executeUpdate();
         } catch (Exception e) {
@@ -102,16 +102,15 @@ public class NotificacaoDAO {
                 FROM Notificacao n WHERE n.id_usuario = ?;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Notificacao n = new Notificacao();
-                Usuario u = new Usuario();
                 n.setId(rs.getInt(1));
                 n.setMensagem(rs.getString(2));
                 n.setTitulo(rs.getString(3));
-                n.setUsuario(u.temId(rs.getInt(4)));
+                // n.setUsuario(u.temId(rs.getInt(4)));
                 n.setVisualizou(rs.getBoolean(5));
                 n.setDataEnvio(LocalDateTime.parse(rs.getString(6)));
                 notificacoes.add(n);
@@ -128,15 +127,14 @@ public class NotificacaoDAO {
                 FROM Notificacao n WHERE n.id = ?;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, idNotificacao);
             ResultSet rs = ps.executeQuery();
             Notificacao n = new Notificacao();
-            Usuario u = new Usuario();
             if (rs.next()) {
                 n.setId(rs.getInt(1));
                 n.setMensagem(rs.getString(2));
-                n.setUsuario(u.temId(rs.getInt(3)));                
+                n.setUsuarioId(rs.getInt(3));
                 n.setTitulo(rs.getString(4));
 
             }
@@ -153,7 +151,7 @@ public class NotificacaoDAO {
                 WHERE n.id_usuario = ? AND n.visualizou = 0;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -172,7 +170,7 @@ public class NotificacaoDAO {
                 WHERE n.id_usuario = ? AND n.visualizou = 1;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL)) {
+                PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
