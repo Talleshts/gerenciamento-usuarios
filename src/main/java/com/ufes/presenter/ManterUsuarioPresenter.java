@@ -73,8 +73,8 @@ public class ManterUsuarioPresenter {
 
             // Delegar a lógica específica para o estado atual
             currentState.executarAcao(view);
-            view.setVisible(false);
-            desktopPane.remove(view);
+            UsuarioLogado usuarioLogado = UsuarioLogado.getINSTANCE();
+            principalPresenter.atualizarEstadoUsuario(usuarioLogado.getDadosUsuarioLogado());
             desktopPane.revalidate();
             desktopPane.repaint();
 
