@@ -10,6 +10,6 @@ import com.ufes.model.Usuario;
  *
  * @author talle
  */
-public interface IObserver {
+public interface IObserverUsuario {
     public void update(Usuario usuario);
 }

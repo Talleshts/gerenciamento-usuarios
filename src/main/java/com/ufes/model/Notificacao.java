@@ -11,20 +11,19 @@ import java.time.LocalDateTime;
  * @author tallesh
  */
 public class Notificacao {
-    	private int id;
-        private Usuario usuario;
-        private String titulo;
-        private String mensagem;
-        private boolean visualizou;
-        private LocalDateTime dataEnvio;
+    private int id;
+    private int id_usuario;
+    private String titulo;
+    private String mensagem;
+    private boolean visualizou;
+    private LocalDateTime dataEnvio;
 
-    public Notificacao(int id, Usuario usuario, String titulo, String mensagem, boolean visualizou, LocalDateTime dataEnvio) {
-        this.id = id;
-        this.usuario = usuario;
+    public Notificacao(int id_usuario, String titulo, String mensagem) {
+        this.id_usuario = id_usuario;
         this.titulo = titulo;
         this.mensagem = mensagem;
-        this.visualizou = visualizou;
-        this.dataEnvio = dataEnvio;
+        this.visualizou = false;
+        this.dataEnvio = LocalDateTime.now();
     }
 
     public Notificacao() {
@@ -37,15 +36,14 @@ public class Notificacao {
     public void setId(int id) {
         this.id = id;
     }
-
-    public Usuario getUsuario() {
-        return usuario;
+    public void setUsuarioId(int id) {
+        this.id_usuario = id;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public int getUsuario() {
+        return id_usuario;
     }
-    
+
     public String getTitulo() {
         return titulo;
     }
