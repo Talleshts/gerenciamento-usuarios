@@ -6,7 +6,9 @@ package com.ufes.presenter;
 
 import java.io.IOException;
 
+import com.ufes.model.Notificacao;
 import com.ufes.model.Usuario;
+import com.ufes.observer.IObserverNotificacao;
 import com.ufes.observer.IObserverUsuario;
 import com.ufes.view.ListarNotificacaoView;
 import com.ufes.view.PrincipalView;
@@ -18,9 +20,8 @@ import javax.swing.JLabel;
  *
  * @author tallesh
  */
-public class PrincipalPresenter implements IObserverUsuario {
+public class PrincipalPresenter implements IObserverUsuario, IObserverNotificacao {
 
-    private PrincipalView principalView;
     private PrincipalView principalView;
     private ListarNotificacaoView listarNotificacaoView;
     private ListarNotificacaoPresenter listarNotificacaoPresenter;
@@ -53,7 +54,7 @@ public class PrincipalPresenter implements IObserverUsuario {
             principalView.getUsuarioNome().setVisible(false);
 
             // Mostra a tela de boas-vindas
-            new BoasVindasPresenter(principalView.getDesktopPane());
+            new BoasVindasPresenter(principalView.getDesktopPane(), this);
 
         } else {
             // Se estiver logado, exibe todos os componentes
@@ -77,6 +78,13 @@ public class PrincipalPresenter implements IObserverUsuario {
         } catch (IOException ex) {
             Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void update(Notificacao notificacao) {
+        String labelText = principalView.getNotifcacoesLbl().getText();
+        int number = Integer.parseInt(labelText) + 1;
+        principalView.setNotifcacoesLbl(String.valueOf(number));
     }
 
     // Método para voltar para a tela de boas-vindas

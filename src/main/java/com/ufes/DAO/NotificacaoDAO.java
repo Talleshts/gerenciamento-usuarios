@@ -6,6 +6,7 @@ package com.ufes.DAO;
 
 import com.ufes.model.Notificacao;
 import com.ufes.model.Usuario;
+import com.ufes.observer.ObservavelNotificacao;
 import com.ufes.services.ConnectionDBService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,6 +54,7 @@ public class NotificacaoDAO {
             ps.setInt(3, notificacao.getUsuario());
             ps.setString(4, LocalDateTime.now().toString());
             ps.executeUpdate();
+            new ObservavelNotificacao().notificarObservers(notificacao);
         } catch (Exception e) {
             throw new Exception("Erro ao inserir");
         }
