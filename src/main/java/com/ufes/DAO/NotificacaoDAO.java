@@ -24,11 +24,9 @@ public class NotificacaoDAO {
     private Connection connection;
     
     public NotificacaoDAO() throws SQLException {
-        this.connection = ConnectionDBService.getConnection();
-        createTableNotificacao(); // Criar tabela no construtor
     }
 
-    public final void createTableNotificacao() {
+    public void createTableNotificacao() {
         String sql = "CREATE TABLE IF NOT EXISTS notificacoes "
                    + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
                    + "mensagem TEXT, "
@@ -37,7 +35,7 @@ public class NotificacaoDAO {
                    + "dataEnvio TEXT, "
                    + "visualizada INTEGER)";
          try (Connection conn = ConnectionDBService.getConnection();
-         Statement stt = conn.createStatement()) {
+              Statement stt = conn.createStatement()) {
 
             stt.execute(sql);
             System.out.println("TABELA notificacoes CRIADA");

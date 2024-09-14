@@ -14,10 +14,9 @@ import java.util.List;
 public class UsuarioDAO {
 
     public UsuarioDAO() {
-        createTableUsuario();
     }
     
-    public final void createTableUsuario() {
+    public void createTableUsuario() {
         String sql = "CREATE TABLE IF NOT EXISTS USUARIOS"
                 + "( ID INTEGER PRIMARY KEY AUTOINCREMENT"
                 + ", NOME VARCHAR(20)"
@@ -87,19 +86,20 @@ public class UsuarioDAO {
     }
 
     public void insert(Usuario usuario) {
-        String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?, ?)";
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dataCadastro = formatter.format(usuario.getDataCadastro());
 
         try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement stt = conn.prepareStatement(sql)) {
 
-            stt.setString(1, usuario.getNome());
-            stt.setString(2, usuario.getSenha());
-            stt.setString(2, usuario.getEmail());
-            stt.setInt(3, usuario.isAdmin() ? 1 : 0);
-            stt.setInt(4, usuario.isAutorizado() ? 1 : 0);
-            stt.setString(5, dataCadastro);
+        stt.setString(1, usuario.getNome());
+        stt.setString(2, usuario.getSenha());
+        stt.setString(3, usuario.getEmail());
+        stt.setInt(4, usuario.isAdmin() ? 1 : 0);
+        stt.setInt(5, usuario.isAutorizado() ? 1 : 0);
+        stt.setString(6, dataCadastro);
+
 
             stt.executeUpdate();
 
