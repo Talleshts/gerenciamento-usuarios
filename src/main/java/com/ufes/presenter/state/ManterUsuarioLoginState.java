@@ -2,6 +2,7 @@ package com.ufes.presenter.state;
 
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
+import com.ufes.model.UsuarioLogado;
 import com.ufes.presenter.PrincipalPresenter;
 import com.ufes.view.ManterUsuarioView;
 import java.io.IOException;
@@ -34,10 +35,13 @@ public class ManterUsuarioLoginState implements ManterUsuarioState{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.findByEmailESenha(email, senha);
 
+
         if (usuario != null) {
             JOptionPane.showMessageDialog(view, "Login realizado com sucesso!");
             view.setVisible(false); // Esconde a tela de login
 
+            UsuarioLogado usuarioLogado = UsuarioLogado.getINSTANCE();
+            usuarioLogado.setDadosUsuarioLogado(usuario);
         } else {
             JOptionPane.showMessageDialog(view, "Email ou senha inválidos", "Erro de Login", JOptionPane.ERROR_MESSAGE);
         }
