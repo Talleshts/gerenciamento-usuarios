@@ -27,9 +27,11 @@ public class BoasVindasPresenter {
     private static BoasVindasView boasVindasView;
     private ManterUsuarioView manterUsuarioView;
     private JDesktopPane desktopPane;
+    private PrincipalPresenter principalPresenter;
 
-    public BoasVindasPresenter(JDesktopPane desktopPane) throws IOException {
+    public BoasVindasPresenter(JDesktopPane desktopPane, PrincipalPresenter principalPresenter) throws IOException {
         this.desktopPane = desktopPane;
+        this.principalPresenter = principalPresenter;
 
         if (boasVindasView == null) {
             boasVindasView = BoasVindasView.getInstance();
@@ -57,7 +59,9 @@ public class BoasVindasPresenter {
         if (isSignUp) {
             manterUsuarioPresenter.setState(new ManterUsuarioInserirState(manterUsuarioView));
         } else {
-            manterUsuarioPresenter.setState(new ManterUsuarioLoginState());
+            // Passando o PrincipalPresenter necessário para o estado de login
+            manterUsuarioPresenter.setState(new ManterUsuarioLoginState(principalPresenter));
         }
     }
+
 }
