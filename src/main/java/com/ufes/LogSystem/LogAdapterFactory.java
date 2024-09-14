@@ -1,6 +1,9 @@
 package com.ufes.LogSystem;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LogAdapterFactory {
@@ -12,12 +15,20 @@ public class LogAdapterFactory {
         logMap.put("CSV", new LogCsvAdapter());
     }
 
-    public static ILogAdapter getLogAdapter(String type) {
-        // Retorna a implementação com base na chave, padrão para JSON se não encontrar
-        return logMap.getOrDefault(type.toUpperCase(), new LogJsonAdapter());
+    public static List<ILogAdapter> getLogAdapters() {
+        String tiposLog = LogConfig.getTipoLogSelecionado();
+        List<ILogAdapter> adapters = new ArrayList<>();
+        String[] typeArray = tiposLog.split(",");
+        for (String type : typeArray) {
+            ILogAdapter adapter = logMap.get(type.trim().toUpperCase());
+            if (adapter != null) {
+                adapters.add(adapter);
+            }
+        }
+        return adapters.isEmpty() ? List.of(new LogJsonAdapter()) : adapters;
+    }
+
+    public static ILogAdapter getLogAdapter() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
-//esse tipo log ai vai vir do combox que o usuário clicar
-//ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
-//logAdapter.logOperacao("Inclusão", "João Silva", "Caio");
-//logAdapter.logFalhaOperacao("Alteração", "Maria Souza", "admin", "Erro de conexão com o banco de dados");

@@ -57,7 +57,7 @@ public class BoasVindasPresenter {
         ManterUsuarioPresenter manterUsuarioPresenter = new ManterUsuarioPresenter(manterUsuarioView, desktopPane, principalPresenter);
 
         if (isSignUp) {
-            manterUsuarioPresenter.setState(new ManterUsuarioInserirState(manterUsuarioView));
+            manterUsuarioPresenter.setState(new ManterUsuarioInserirState(manterUsuarioView, principalPresenter));
         } else {
             // Passando o PrincipalPresenter necessário para o estado de login
             manterUsuarioPresenter.setState(new ManterUsuarioLoginState(principalPresenter));

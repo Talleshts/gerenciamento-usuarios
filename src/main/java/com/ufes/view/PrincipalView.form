@@ -51,7 +51,6 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemCSV">
                   <Properties>
-                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="CSV"/>
                   </Properties>
                 </MenuItem>
@@ -73,6 +72,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alterar Dados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemEditarUsuarioActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

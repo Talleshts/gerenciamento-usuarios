@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
 
 import com.ufes.model.Notificacao;
 import com.ufes.model.Usuario;
@@ -23,7 +24,6 @@ import com.ufes.view.ListarNotificacaoView;
 import com.ufes.view.ListarUsuarioView;
 import com.ufes.view.ManterUsuarioView;
 import com.ufes.view.PrincipalView;
-import javax.swing.JLabel;
 
 /**
  *
@@ -165,7 +165,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 		view.setVisible(true);
 
 		ManterUsuarioPresenter presenter = new ManterUsuarioPresenter(view, desktopPane, this);
-		presenter.setState(new ManterUsuarioInserirState(view));
+		presenter.setState(new ManterUsuarioInserirState(view, this));
 
 		// Garantir que o desktopPane seja atualizado
 		desktopPane.revalidate();

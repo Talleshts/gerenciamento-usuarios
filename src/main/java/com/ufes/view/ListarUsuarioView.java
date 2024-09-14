@@ -16,6 +16,10 @@ public class ListarUsuarioView extends javax.swing.JInternalFrame {
     public ListarUsuarioView() {
         initComponents();
     }
+    
+    public javax.swing.JTable getTblUsuarios() {
+        return tblUsuarios;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
