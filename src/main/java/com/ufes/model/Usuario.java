@@ -27,6 +27,7 @@ public class Usuario {
         this.isAdmin = isAdmin;
         this.isAutorizado = isAutorizado;
     }
+    
     public Usuario(String nome, String senha, boolean isAdmin, boolean isAutorizado) {
         this.nome = nome;
         this.senha = senha;
