@@ -5,13 +5,17 @@
 package com.ufes.view;
 
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JInternalFrame;
 import java.awt.event.ActionEvent;
-import com.ufes.view.BoasVindasView;
 /**
  *
  * @author talle
  */
-public class ManterUsuarioView extends javax.swing.JInternalFrame {
+public class ManterUsuarioView extends JInternalFrame{
 
     /**
      * Creates new form ManterUsuarioView
@@ -29,18 +33,18 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
+        jLabel6 = new JLabel();
         jPassFSenha1 = new javax.swing.JPasswordField();
         jBtnCadastrar = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new JLabel();
+        jLabel5 = new JLabel();
         jTxtFNome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel3 = new JLabel();
         jTxtFEmail = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel4 = new JLabel();
         jPassFSenha = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel7 = new JLabel();
         jPassFSenha2 = new javax.swing.JPasswordField();
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -147,7 +151,30 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
         });
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public JButton getPrimaryButton() {
+        return jBtnCadastrar;
+    }
 
+    public JLabel getMainLabel() {
+        return jLabel5;
+    }
+
+    public JLabel getNameLabel() {
+        return jLabel1;
+    }
+
+    public JTextField getNameField() {
+        return jTxtFNome;
+    }
+
+    public JLabel getConfirmPasswordLabel() {
+        return jLabel7;
+    }
+
+    public JTextField getConfirmPasswordField() {
+        return jPassFSenha2;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCadastrar;

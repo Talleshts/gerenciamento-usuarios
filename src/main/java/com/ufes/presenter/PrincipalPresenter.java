@@ -10,7 +10,6 @@ import com.ufes.model.Usuario;
 import com.ufes.observer.IObserver;
 import com.ufes.view.ListarNotificacaoView;
 import com.ufes.view.PrincipalView;
-import javax.swing.JDesktopPane;
 
 /**
  *
