@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="log de inserção">
-      <change beforePath="$PROJECT_DIR$/sample.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/presenter/state/ManterUsuarioLoginState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/presenter/state/ManterUsuarioLoginState.java" afterDir="false" />
-    </list>
+    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="adicionando log de falha no usuario" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +20,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -190,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726346043524</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="adicionando log de falha no usuario">
+      <option name="closed" value="true" />
+      <created>1726348893728</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726348893728</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,7 +219,8 @@
     <MESSAGE value="adicionando uma factory de logs" />
     <MESSAGE value="Criando uma unica instância do usuario logado" />
     <MESSAGE value="log de inserção" />
-    <option name="LAST_COMMIT_MESSAGE" value="log de inserção" />
+    <MESSAGE value="adicionando log de falha no usuario" />
+    <option name="LAST_COMMIT_MESSAGE" value="adicionando log de falha no usuario" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -84,9 +84,7 @@ public class UsuarioDAO {
             stt.executeUpdate();
 
         } catch (SQLException e) {
-            String tipoLog = "JSON";
-            ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
-            logAdapter.logFalhaOperacao("Alteração", UsuarioLogado.getINSTANCE().getNome(), usuario.getNome(), e.getMessage());
+            executeLog("Alteração", usuario, e);
             throw new RuntimeException(e);
         }
     }
@@ -110,9 +108,7 @@ public class UsuarioDAO {
             stt.executeUpdate();
 
         } catch (SQLException e) {
-            String tipoLog = "JSON";
-            ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
-            logAdapter.logFalhaOperacao("Inclusão", UsuarioLogado.getINSTANCE().getNome(), usuario.getNome(), e.getMessage());
+            executeLog("Inclusão", usuario, e);
         }
     }
 
@@ -187,12 +183,17 @@ public class UsuarioDAO {
             stt.executeUpdate();
 
         } catch (SQLException e) {
-            String tipoLog = "JSON";
-            ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
-            logAdapter.logFalhaOperacao("Exclusão", UsuarioLogado.getINSTANCE().getNome(), usuario.getNome(), e.getMessage());
+            executeLog("Exclusão", usuario, e);
 
             throw new RuntimeException(e);
 
+        }
+
+    }
+    private void executeLog(String operacao, Usuario usuario,SQLException e){
+        List<ILogAdapter> logAdapters = LogAdapterFactory.getLogAdapters(); // Obtém a lista de adaptadores de log
+        for (ILogAdapter logAdapter : logAdapters) {
+            logAdapter.logFalhaOperacao(operacao, UsuarioLogado.getINSTANCE().getNome(), usuario.getNome(), e.getMessage());
         }
     }
 }
