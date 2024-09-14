@@ -26,15 +26,13 @@ public class ManterUsuarioPresenter {
         
         this.view.getjBtnCadastrar().addActionListener(e -> {
             try {
-                System.out.println("ENTRAAAAA");
-                entrarNoSistemaUsuario();
+                executarAcao();
             } catch (IOException ex) {
                 Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         this.view.getjBtnCancelar().addActionListener(e -> {
             try {
-                System.out.println("CANCELAAAAAA");
                 cancelar();
             } catch (IOException ex) {
                 Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,28 +41,17 @@ public class ManterUsuarioPresenter {
     }
 
     // Ao clicar em "Cadastrar" ou "Logar"
-    private void entrarNoSistemaUsuario() throws IOException {
-        // Instanciar o serviço de validação
-        ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
+    private void executarAcao() throws IOException {
+        if (currentState == null) {
+            throw new IllegalStateException("Estado não definido");
+        }
         
         try {
-            // Validar entradas
-            validadorEntryService.validarCadastro();
-            
-            // Criar o usuário com base nos dados da view
-            String nome = view.getjTxtFNome().getText();
-            String senha = String.valueOf(view.getjPassFSenha().getPassword());
-            Usuario usuario = new Usuario(nome, senha, true, true);
-            
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.insert(usuario); // Salvando o usuário no banco
-            
-            JOptionPane.showMessageDialog(view, "Cadastro realizado com sucesso!");
-            
-            view.setVisible(false); // Esconde a tela de manter usuário
-            
-            // Volta para a tela de boas-vindas
-            new BoasVindasPresenter(desktopPane);
+            ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
+            validadorEntryService.validarCadastro(); // Validar entradas
+
+            // Delegar a lógica específica para o estado atual
+            currentState.executarAcao(view);
             
         } catch (IllegalArgumentException e) {
             // Exibir a mensagem de erro

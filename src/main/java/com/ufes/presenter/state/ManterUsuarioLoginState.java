@@ -1,6 +1,11 @@
 package com.ufes.presenter.state;
 
+import com.ufes.DAO.UsuarioDAO;
+import com.ufes.model.Usuario;
+import com.ufes.presenter.PrincipalPresenter;
 import com.ufes.view.ManterUsuarioView;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class ManterUsuarioLoginState implements ManterUsuarioState{
     @Override
@@ -22,7 +27,19 @@ public class ManterUsuarioLoginState implements ManterUsuarioState{
     }
 
     @Override
-    public void entrarNoSistemaState() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void executarAcao(ManterUsuarioView view) {
+        String email = view.getjTxtFEmail().getText();
+        String senha = String.valueOf(view.getjPassFSenha().getPassword());
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.findByEmailESenha(email, senha);
+
+        if (usuario != null) {
+            JOptionPane.showMessageDialog(view, "Login realizado com sucesso!");
+            view.setVisible(false); // Esconde a tela de login
+
+        } else {
+            JOptionPane.showMessageDialog(view, "Email ou senha inválidos", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

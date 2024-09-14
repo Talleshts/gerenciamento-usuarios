@@ -83,23 +83,22 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
     }
     
     @Override
-    public void entrarNoSistemaState(){
-        String nome = manterUsuarioView.getjTxtFNome().getText();
-        String senha = String.valueOf(manterUsuarioView.getjPassFSenha().getPassword());
-
+    public void executarAcao(ManterUsuarioView view){
+        // Lógica de cadastro
+        String nome = view.getjTxtFNome().getText();
+        String senha = String.valueOf(view.getjPassFSenha().getPassword());
         Usuario usuario = new Usuario(nome, senha, false, true);
+        
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.insert(usuario);
-
-        JOptionPane.showMessageDialog(manterUsuarioView, "Cadastro realizado com sucesso!");
-
-        manterUsuarioView.setVisible(false); // Esconde a tela de manter usuário
-     try {
-         // Volta para a tela de boas-vindas
-         new BoasVindasPresenter(manterUsuarioView.getDesktopPane());
-     } catch (IOException ex) {
-         Logger.getLogger(ManterUsuarioInserirState.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        usuarioDAO.insert(usuario); // Salvando o usuário no banco
+        
+        JOptionPane.showMessageDialog(view, "Cadastro realizado com sucesso!");
+        view.setVisible(false); // Esconde a tela de manter usuário
+        try {
+            new BoasVindasPresenter(view.getDesktopPane());
+        } catch (IOException ex) {
+            Logger.getLogger(ManterUsuarioInserirState.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
 }

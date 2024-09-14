@@ -31,6 +31,8 @@ public class ManterUsuarioEditarState implements ManterUsuarioState {
     }
 
     @Override
-    public void entrarNoSistemaState() {
+    public void executarAcao(ManterUsuarioView view) {
     }
+
+
 }

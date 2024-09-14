@@ -13,5 +13,5 @@ import com.ufes.view.ManterUsuarioView;
 public interface ManterUsuarioState {
 	void aplicarState(ManterUsuarioView view);
         
-        void entrarNoSistemaState();
+        void executarAcao(ManterUsuarioView view);
 }

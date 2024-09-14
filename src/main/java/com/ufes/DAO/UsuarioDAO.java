@@ -21,6 +21,7 @@ public class UsuarioDAO {
         String sql = "CREATE TABLE IF NOT EXISTS USUARIOS"
                 + "( ID INTEGER PRIMARY KEY AUTOINCREMENT"
                 + ", NOME VARCHAR(20)"
+                + ", EMAIL VARCHAR(20)"
                 + ", SENHA VARCHAR(20)"
                 + ", IS_ADMIN INTEGER"
                 + ", IS_AUTORIZADO INTEGER"
@@ -131,6 +132,36 @@ public class UsuarioDAO {
         }
         return usuario;
     }
+    
+    public Usuario findByEmailESenha(String email, String senha) {
+        Usuario usuario = null;
+        String sql = "SELECT * FROM USUARIOS WHERE EMAIL = ? AND SENHA = ?";
+
+        try (Connection conn = ConnectionDBService.getConnection();
+             PreparedStatement stt = conn.prepareStatement(sql)) {
+
+            stt.setString(1, email);
+            stt.setString(2, senha);
+            try (ResultSet resultSet = stt.executeQuery()) {
+                if (resultSet.next()) {
+                    Date dataCadastro = new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString("DATA_CADASTRO"));
+                    usuario = new Usuario(
+                            resultSet.getInt("ID"),
+                            resultSet.getString("NOME"),
+                            resultSet.getString("SENHA"),
+                            dataCadastro,
+                            resultSet.getBoolean("IS_ADMIN"),
+                            resultSet.getBoolean("IS_AUTORIZADO")
+                    );
+                }
+            }
+
+        } catch (SQLException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return usuario;
+    }
+
 
     public void remove(Integer id) {
         String sql = "DELETE FROM USUARIOS WHERE ID = ?";
