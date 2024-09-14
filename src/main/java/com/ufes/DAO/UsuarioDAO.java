@@ -1,7 +1,10 @@
 package com.ufes.DAO;
 
 
+import com.ufes.LogSystem.ILogAdapter;
+import com.ufes.LogSystem.LogAdapterFactory;
 import com.ufes.model.Usuario;
+import com.ufes.model.UsuarioLogado;
 import com.ufes.services.ConnectionDBService;
 
 import java.sql.*;
@@ -81,6 +84,9 @@ public class UsuarioDAO {
             stt.executeUpdate();
 
         } catch (SQLException e) {
+            String tipoLog = "JSON";
+            ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
+            logAdapter.logFalhaOperacao("Alteração", UsuarioLogado.getINSTANCE().getNome(), usuario.getNome(), e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -104,7 +110,9 @@ public class UsuarioDAO {
             stt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            String tipoLog = "JSON";
+            ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
+            logAdapter.logFalhaOperacao("Inclusão", UsuarioLogado.getINSTANCE().getNome(), usuario.getNome(), e.getMessage());
         }
     }
 
@@ -169,17 +177,22 @@ public class UsuarioDAO {
     }
 
 
-    public void remove(Integer id) {
+    public void remove(Usuario usuario) {
         String sql = "DELETE FROM USUARIOS WHERE ID = ?";
 
         try (Connection conn = ConnectionDBService.getConnection();
              PreparedStatement stt = conn.prepareStatement(sql)) {
 
-            stt.setInt(1, id);
+            stt.setInt(1, usuario.getId());
             stt.executeUpdate();
 
         } catch (SQLException e) {
+            String tipoLog = "JSON";
+            ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
+            logAdapter.logFalhaOperacao("Exclusão", UsuarioLogado.getINSTANCE().getNome(), usuario.getNome(), e.getMessage());
+
             throw new RuntimeException(e);
+
         }
     }
 }
