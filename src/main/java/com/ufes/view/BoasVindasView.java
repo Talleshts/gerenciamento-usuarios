@@ -11,15 +11,15 @@ import javax.swing.JInternalFrame;
  * @author talle
  */
 public class BoasVindasView extends JInternalFrame {
-    private static BoasVindasView view;
+        private static BoasVindasView view;
 	/**
 	 * Creates new form BoasVindasView
 	 */
 	private BoasVindasView() {
-		initComponents();
+            initComponents();
 	}
 
-    public static BoasVindasView getInstance() {
+    public static synchronized BoasVindasView getInstance() {
         if (view == null) {
             view = new BoasVindasView();
         }

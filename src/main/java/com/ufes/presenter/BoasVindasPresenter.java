@@ -24,36 +24,40 @@ import com.ufes.view.ManterUsuarioView;
  * @author talle
  */
 public class BoasVindasPresenter {
-    private BoasVindasView boasVindasView;
+    private static BoasVindasView boasVindasView;
     private ManterUsuarioView manterUsuarioView;
     private JDesktopPane desktopPane;
 
     public BoasVindasPresenter(JDesktopPane desktopPane) throws IOException {
         this.desktopPane = desktopPane;
-        boasVindasView = BoasVindasView.getInstance();
-        manterUsuarioView = new ManterUsuarioView();
 
-        desktopPane.add(boasVindasView);
-        desktopPane.add(manterUsuarioView);
+        if (boasVindasView == null) {
+            boasVindasView = BoasVindasView.getInstance();
+            desktopPane.add(boasVindasView);
+        }
 
         boasVindasView.setVisible(true);
+
         boasVindasView.getLoginBtn().addActionListener(e -> configureUserView(false));
         boasVindasView.getSigninBtn().addActionListener(e -> configureUserView(true));
     }
 
     private void configureUserView(boolean isSignUp) {
-        manterUsuarioView.setVisible(true);
-
-        if (isSignUp) {
-            // Aplica o estado de inserção de usuário (cadastro)
-            new ManterUsuarioInserirState(manterUsuarioView).aplicarState(manterUsuarioView);
-        } else {
-            // Aplica o estado de login de usuário
-            new ManterUsuarioLoginState().aplicarState(manterUsuarioView);
+        if (manterUsuarioView != null) {
+            desktopPane.remove(manterUsuarioView); // Remove a tela de manter usuário se ela já estiver no desktopPane
         }
 
-        // Mostra a tela de ManterUsuarioView
+        manterUsuarioView = new ManterUsuarioView();
+        desktopPane.add(manterUsuarioView);
         manterUsuarioView.setVisible(true);
         boasVindasView.setVisible(false); // Oculta a tela de boas-vindas
+
+        ManterUsuarioPresenter manterUsuarioPresenter = new ManterUsuarioPresenter(manterUsuarioView, desktopPane);
+
+        if (isSignUp) {
+            manterUsuarioPresenter.setState(new ManterUsuarioInserirState(manterUsuarioView));
+        } else {
+            manterUsuarioPresenter.setState(new ManterUsuarioLoginState());
+        }
     }
 }

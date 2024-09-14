@@ -40,47 +40,6 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
         view.setButtonText("Cadastrar");
         view.setCancelarButtonText("Cancelar");
     }
-
-    private void cadastrarUsuario() throws IOException {
-        String nome = manterUsuarioView.getjTxtFNome().getText();
-        String senha = String.valueOf(manterUsuarioView.getjPassFSenha().getPassword());
-        String confirmaSenha = String.valueOf(manterUsuarioView.getjPassFSenha2().getPassword());
-
-        if (senha.equals(confirmaSenha)) {
-            Usuario usuario = new Usuario(nome, senha, false, true);
-
-            usuarioDAO.insert(usuario);
-            JOptionPane.showMessageDialog(manterUsuarioView, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            // Após cadastro, redirecionar para a tela de boas-vindas
-            manterUsuarioView.setVisible(false);  // Oculta a tela de cadastro
-            new BoasVindasPresenter(manterUsuarioView.getDesktopPane());  // Mostra a tela de boas-vindas
-        } else {
-            JOptionPane.showMessageDialog(manterUsuarioView, "As senhas não conferem. Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    // Adicionar um listener no botão de cadastro
-    public void addCadastrarListener() {
-        manterUsuarioView.getjBtnCadastrar().addActionListener(e -> {
-            try {
-                cadastrarUsuario();
-            } catch (IOException ex) {
-                Logger.getLogger(ManterUsuarioInserirState.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-    }
-
-    // Adicionar um listener no botão de cancelar
-    public void addCancelarListener() {
-        manterUsuarioView.getjBtnCancelar().addActionListener(e -> {
-            manterUsuarioView.setVisible(false);
-            try {
-                new BoasVindasPresenter(manterUsuarioView.getDesktopPane());
-            } catch (IOException ex) {
-                Logger.getLogger(ManterUsuarioInserirState.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-    }
     
     @Override
     public void executarAcao(ManterUsuarioView view){

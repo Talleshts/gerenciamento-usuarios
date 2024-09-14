@@ -88,6 +88,7 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
         public void setConfirmaSenhaEditable(boolean editable) {
             jPassFSenha2.setEditable(editable);
         }
+        
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
