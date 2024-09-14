@@ -20,7 +20,7 @@ import javax.swing.JLabel;
  */
 public class PrincipalPresenter implements IObserver {
 
-    private PrincipalView principalView;
+       private PrincipalView principalView;
     private ListarNotificacaoView listarNotificacaoView;
     private ListarNotificacaoPresenter listarNotificacaoPresenter;
     private Usuario usuario = null;
@@ -29,20 +29,19 @@ public class PrincipalPresenter implements IObserver {
         principalView = new PrincipalView();
         principalView.setVisible(true);
 
-        // Realiza a validação do usuário logado
+        // Inicia a tela de boas-vindas ou a tela principal
         atualizarEstadoUsuario();
 
         listarNotificacaoView = new ListarNotificacaoView();
         listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
         
-        principalView.getNotificationButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            listarNotificacaoPresenter.getView().setVisible(true);
-        });
+        // Adiciona listener para o botão de notificações
+        principalView.getNotificationButton().addActionListener(evt -> listarNotificacaoPresenter.getView().setVisible(true));
     }
 
     private void atualizarEstadoUsuario() throws IOException {
         if (usuario == null) {
-            // Se não estiver logado, exibe apenas o JDesktopPane
+            // Se não estiver logado, exibe apenas o JDesktopPane e oculta outros componentes
             principalView.getDesktopPane().setVisible(true);
             principalView.getNotificationButton().setVisible(false);
             principalView.getJMenuBar().setVisible(false);
@@ -50,6 +49,7 @@ public class PrincipalPresenter implements IObserver {
             principalView.getUsuarioNomeLbl().setVisible(false);
             principalView.getUsuarioNome().setVisible(false);
             
+            // Mostra a tela de boas-vindas
             new BoasVindasPresenter(principalView.getDesktopPane());            
 
         } else {
@@ -57,8 +57,12 @@ public class PrincipalPresenter implements IObserver {
             principalView.getDesktopPane().setVisible(true);
             principalView.getNotificationButton().setVisible(true);
             principalView.getJMenuBar().setVisible(true);
-            // Atualiza o nome do usuário na view
-            principalView.setUsuarioNome( new JLabel(usuario.getNome()));
+            principalView.getNotifcacoesLbl().setVisible(true);
+            principalView.getUsuarioNomeLbl().setVisible(true);
+            principalView.getUsuarioNome().setVisible(true);
+            
+            // Atualiza o nome do usuário na interface
+            principalView.setUsuarioNome(new JLabel(usuario.getNome()));
         }
     }
 
@@ -67,6 +71,16 @@ public class PrincipalPresenter implements IObserver {
         this.usuario = usuario;
         try {
             atualizarEstadoUsuario(); // Atualiza a view ao receber novo estado do usuário
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    // Método para voltar para a tela de boas-vindas
+    public void voltarParaBoasVindas() {
+        try {
+            usuario = null;
+            atualizarEstadoUsuario(); // Redefine o estado para mostrar a tela de boas-vindas
         } catch (IOException ex) {
             Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }

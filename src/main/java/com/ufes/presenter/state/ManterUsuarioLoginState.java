@@ -19,9 +19,10 @@ public class ManterUsuarioLoginState implements ManterUsuarioState{
         // Configura os botões
         view.setButtonText("Entrar");
         view.setCancelarButtonText("Cancelar");
+    }
 
-        // Ajusta a visibilidade dos campos de Nome e Confirmar Senha
-        view.setNomeVisible(false);
-        view.setConfirmaSenhaVisible(false);
+    @Override
+    public void entrarNoSistemaState() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

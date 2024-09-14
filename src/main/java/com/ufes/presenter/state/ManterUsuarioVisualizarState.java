@@ -28,4 +28,8 @@ public class ManterUsuarioVisualizarState implements ManterUsuarioState{
         // Configura os botões
         view.setCancelarButtonText("Fechar");
     }
+
+    @Override
+    public void entrarNoSistemaState() {
+    }
 }

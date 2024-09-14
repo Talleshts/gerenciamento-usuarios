@@ -29,4 +29,8 @@ public class ManterUsuarioEditarState implements ManterUsuarioState {
         // Configurar o texto do botão de cancelar para "Cancelar"
         view.setCancelarButtonText("Cancelar");
     }
+
+    @Override
+    public void entrarNoSistemaState() {
+    }
 }

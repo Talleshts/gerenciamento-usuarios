@@ -6,6 +6,7 @@ package com.ufes.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -76,17 +77,18 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
             jPassFSenha.setEditable(editable);
         }
 
+        public JButton getjBtnCadastrar() {
+            return jBtnCadastrar;
+        }
+
+        public JButton getjBtnCancelar() {
+            return jBtnCancelar;
+        }
+
         public void setConfirmaSenhaEditable(boolean editable) {
             jPassFSenha2.setEditable(editable);
         }
 
-        public void addCadastrarListener(ActionListener listener) {
-            jBtnCadastrar.addActionListener(listener);
-        }
-
-        public void addCancelarListener(ActionListener listener) {
-            jBtnCancelar.addActionListener(listener);
-        }
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,12 +120,10 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
 
         jBtnCadastrar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         jBtnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jBtnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         jBtnCadastrar.setText("Salvar");
 
         jBtnCancelar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
         jBtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jBtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jBtnCancelar.setText("Cancelar");
         jBtnCancelar.setMaximumSize(new java.awt.Dimension(93, 22));
         jBtnCancelar.setMinimumSize(new java.awt.Dimension(93, 22));
