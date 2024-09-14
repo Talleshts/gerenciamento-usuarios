@@ -5,7 +5,10 @@
 package com.ufes.presenter.state;
 
 import com.ufes.DAO.UsuarioDAO;
+import com.ufes.LogSystem.ILogAdapter;
+import com.ufes.LogSystem.LogAdapterFactory;
 import com.ufes.model.Usuario;
+import com.ufes.model.UsuarioLogado;
 import com.ufes.presenter.BoasVindasPresenter;
 import com.ufes.presenter.PrincipalPresenter;
 import com.ufes.services.ValidadorEntryService;
@@ -58,6 +61,12 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.insert(usuario); // Salvando o usuário no banco
+
+        String tipoLog = "JSON"; // TROCA ISSO AQUI
+        ILogAdapter logAdapter = LogAdapterFactory.getLogAdapter(tipoLog);
+        UsuarioLogado usuarioLogado = UsuarioLogado.getINSTANCE();
+
+        logAdapter.logOperacao("Inclusão",usuarioLogado.getNome(),usuario.getNome());
 
         JOptionPane.showMessageDialog(view, "Cadastro realizado com sucesso!");
         view.setVisible(false); // Esconde a tela de manter usuário
