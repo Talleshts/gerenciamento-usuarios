@@ -37,13 +37,16 @@ public class ListarUsuarioView extends javax.swing.JInternalFrame {
         btnEnviarNotificacao = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Lista de Usuarios");
+
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Usuarios Cadastrados");
 
         btnAutorizar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
         btnAutorizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAutorizar.setForeground(new java.awt.Color(255, 255, 255));
         btnAutorizar.setText("Autorizar");
 
         jScrollPane2.setBackground(java.awt.Color.white);
@@ -60,12 +63,10 @@ public class ListarUsuarioView extends javax.swing.JInternalFrame {
 
         btnEnviarNotificacao.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         btnEnviarNotificacao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEnviarNotificacao.setForeground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         btnEnviarNotificacao.setText("Enviar noticação");
 
         btnExcluir.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

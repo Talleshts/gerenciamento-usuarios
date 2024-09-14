@@ -4,6 +4,7 @@
  */
 package com.ufes.view;
 
+import com.ufes.model.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -22,7 +23,33 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
 	public ManterUsuarioView() {
 		initComponents();
 	}
+        
+        public void setUsuario(Usuario usuario) {
+            if (usuario != null) {
+                jTxtFNome.setText(usuario.getNome());
+                jTxtFEmail.setText(usuario.getEmail());
+                jPassFSenha.setText(usuario.getSenha());
+                jPassFSenha2.setText(usuario.getSenha());
+            }
+        }
 
+
+        public void setjPassFSenha(JPasswordField jPassFSenha) {
+            this.jPassFSenha = jPassFSenha;
+        }
+
+        public void setjPassFSenha1(JPasswordField jPassFSenha1) {
+            this.jPassFSenha1 = jPassFSenha1;
+        }
+
+        public void setjTxtFEmail(JTextField jTxtFEmail) {
+            this.jTxtFEmail = jTxtFEmail;
+        }
+
+        public void setjTxtFNome(JTextField jTxtFNome) {
+            this.jTxtFNome = jTxtFNome;
+        }
+        
         public JPasswordField getjPassFSenha() {
             return jPassFSenha;
         }
@@ -37,6 +64,13 @@ public class ManterUsuarioView extends javax.swing.JInternalFrame {
 
         public JTextField getjTxtFNome() {
             return jTxtFNome;
+        }
+        
+        public void limparCampos() {
+            jTxtFNome.setText("");
+            jTxtFEmail.setText("");
+            jPassFSenha.setText("");
+            jPassFSenha2.setText("");
         }
 
         public void setSalvarButtonEnabled(boolean enabled) {

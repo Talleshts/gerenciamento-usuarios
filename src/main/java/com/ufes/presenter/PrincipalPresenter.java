@@ -50,8 +50,22 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 		listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
 
 		// Adiciona listener para o botão de notificações
-		principalView.getNotificationButton()
-				.addActionListener(evt -> listarNotificacaoPresenter.getView().setVisible(true));
+		principalView.getNotificationButton().addActionListener(evt -> {
+                    JDesktopPane desktopPane = principalView.getDesktopPane();
+                    desktopPane.removeAll(); // Remove todos os componentes atuais
+
+                    listarNotificacaoView = new ListarNotificacaoView();
+                    listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
+
+                    // Adiciona a view de notificações no JDesktopPane
+                    desktopPane.add(listarNotificacaoView);
+
+                    listarNotificacaoView.setVisible(true);
+
+                    // Revalida e repinta o desktopPane para garantir que ele seja atualizado
+                    desktopPane.revalidate();
+                    desktopPane.repaint();
+                });
 
 		// Adiciona ActionListeners para os itens de menu
 		principalView.getjMenuItemDeslogar().addActionListener(new ActionListener() {
@@ -106,7 +120,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 			principalView.getUsuarioNome().setVisible(true);
 
 			// Atualiza o nome do usuário na interface
-			principalView.setUsuarioNome(usuario.getNome());
+			principalView.setUsuarioNome(new JLabel(usuario.getNome()));
 		}
 	}
 
@@ -147,8 +161,8 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 
 		view.setVisible(true);
 
-		ManterUsuarioPresenter presenter = new ManterUsuarioPresenter(view, desktopPane, this);
-		presenter.setState(new ManterUsuarioEditarState(view));
+		ManterUsuarioPresenter presenter = new ManterUsuarioPresenter(view, desktopPane, this, usuario);
+		presenter.setState(new ManterUsuarioEditarState(view, usuario));
 
 		// Garantir que o desktopPane seja atualizado
 		desktopPane.revalidate();
@@ -165,7 +179,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 
 		view.setVisible(true);
 
-		ManterUsuarioPresenter presenter = new ManterUsuarioPresenter(view, desktopPane, this);
+		ManterUsuarioPresenter presenter = new ManterUsuarioPresenter(view, desktopPane, this, usuario);
 		presenter.setState(new ManterUsuarioInserirState(view, this));
 
 		// Garantir que o desktopPane seja atualizado

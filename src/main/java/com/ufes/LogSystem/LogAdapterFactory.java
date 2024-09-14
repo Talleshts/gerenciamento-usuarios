@@ -27,8 +27,4 @@ public class LogAdapterFactory {
         }
         return adapters.isEmpty() ? List.of(new LogJsonAdapter()) : adapters;
     }
-
-    public static ILogAdapter getLogAdapter() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

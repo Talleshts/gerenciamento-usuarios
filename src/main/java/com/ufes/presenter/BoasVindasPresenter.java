@@ -28,6 +28,7 @@ public class BoasVindasPresenter {
     private ManterUsuarioView manterUsuarioView;
     private JDesktopPane desktopPane;
     private PrincipalPresenter principalPresenter;
+    private Usuario usuario;
 
     public BoasVindasPresenter(JDesktopPane desktopPane, PrincipalPresenter principalPresenter) throws IOException {
         this.desktopPane = desktopPane;
@@ -54,7 +55,7 @@ public class BoasVindasPresenter {
         manterUsuarioView.setVisible(true);
         boasVindasView.setVisible(false); // Oculta a tela de boas-vindas
 
-        ManterUsuarioPresenter manterUsuarioPresenter = new ManterUsuarioPresenter(manterUsuarioView, desktopPane, principalPresenter);
+        ManterUsuarioPresenter manterUsuarioPresenter = new ManterUsuarioPresenter(manterUsuarioView, desktopPane, principalPresenter, usuario);
 
         if (isSignUp) {
             manterUsuarioPresenter.setState(new ManterUsuarioInserirState(manterUsuarioView, principalPresenter));
@@ -62,6 +63,9 @@ public class BoasVindasPresenter {
             // Passando o PrincipalPresenter necessário para o estado de login
             manterUsuarioPresenter.setState(new ManterUsuarioLoginState(principalPresenter));
         }
+        
+        desktopPane.revalidate();
+        desktopPane.repaint();
     }
 
 }
