@@ -53,9 +53,6 @@ public class ManterUsuarioPresenter {
         }
 
         try {
-            ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
-            validadorEntryService.validarCadastro(); // Validar entradas
-
             // Delegar a lógica específica para o estado atual
             currentState.executarAcao(view);
 
