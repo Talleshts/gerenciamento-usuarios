@@ -5,6 +5,7 @@
 package com.ufes.view;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,32 +17,48 @@ public class PrincipalView extends javax.swing.JFrame {
 	 */
 	public PrincipalView() {
             initComponents();
-            atualizarEstado();
 	}
-        
-    private void atualizarEstado() {
-       /* if (usuarioLogado == null) {
-            // Se o usuário não estiver logado, exibe apenas o JDesktopPane
-            UsuarioNomeLabel.setVisible(false);
-            btnNotificacao.setVisible(false);
-            jMenuBar1.setVisible(false);
-        } else {
-            // Se o usuário estiver logado, exibe todos os componentes
-            UsuarioNomeLabel.setText("Usuário: " + usuarioLogado);
-            UsuarioNomeLabel.setVisible(true);
-            btnNotificacao.setVisible(true);
-            jMenuBar1.setVisible(true);
-        }
-        */
-    }
+      
 
 	public javax.swing.JDesktopPane getDesktopPane() {
-		return jDesktopPane1;
+            return jDesktopPane1;
 	}
     
-    public JButton getNotificationButton() {
-       return btnNotificacao;
-    }
+        public JButton getNotificationButton() {
+           return btnNotificacao;
+        }
+
+        public JLabel getNotifcacoesLbl() {
+            return NotifcacoesLbl;
+        }
+
+        public JLabel getUsuarioNome() {
+            return UsuarioNome;
+        }
+
+        public JLabel getUsuarioNomeLbl() {
+            return UsuarioNomeLbl;
+        }
+
+        public void setNotifcacoesLbl(JLabel NotifcacoesLbl) {
+            this.NotifcacoesLbl = NotifcacoesLbl;
+        }
+
+        public void setUsuarioNome(JLabel UsuarioNome) {
+            this.UsuarioNome = UsuarioNome;
+        }
+
+        public void setUsuarioNomeLbl(JLabel UsuarioNomeLbl) {
+            this.UsuarioNomeLbl = UsuarioNomeLbl;
+        }
+
+        public void setBtnNotificacao(JButton btnNotificacao) {
+            this.btnNotificacao = btnNotificacao;
+        }
+        
+        
+        
+        
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -54,10 +71,10 @@ public class PrincipalView extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        UsuarioNomeLabel = new javax.swing.JLabel();
+        UsuarioNome = new javax.swing.JLabel();
         btnNotificacao = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        NotifcacoesLbl = new javax.swing.JLabel();
+        UsuarioNomeLbl = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -92,9 +109,9 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Notificações");
+        NotifcacoesLbl.setText("Notificações");
 
-        jLabel2.setText("Usuário Logado");
+        UsuarioNomeLbl.setText("Usuário Logado");
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
 
@@ -147,11 +164,11 @@ public class PrincipalView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(UsuarioNomeLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UsuarioNomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(UsuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 968, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(NotifcacoesLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -165,16 +182,16 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(jDesktopPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UsuarioNomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UsuarioNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel2))
+                                .addComponent(UsuarioNomeLbl))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(jLabel1)))
+                                .addComponent(NotifcacoesLbl)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -234,13 +251,13 @@ public class PrincipalView extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel UsuarioNomeLabel;
+    private javax.swing.JLabel NotifcacoesLbl;
+    private javax.swing.JLabel UsuarioNome;
+    private javax.swing.JLabel UsuarioNomeLbl;
     private javax.swing.JButton btnNotificacao;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

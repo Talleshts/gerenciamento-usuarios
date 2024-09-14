@@ -22,8 +22,11 @@ public class ValidadorEntryService {
     public void validarCadastro() throws IllegalArgumentException {
         String nome = view.getjTxtFNome().getText();
         String email = view.getjTxtFEmail().getText();
-        String senha = String.valueOf(view.getjPassFSenha1().getPassword());
+        String senha = String.valueOf(view.getjPassFSenha().getPassword());
+        String senhaConfirmada = String.valueOf(view.getjPassFSenha().getPassword());
 
-       // UserValidator.validate(nome, email, senha);
+        if(senha != senhaConfirmada){
+            
+        }
     }
 }
