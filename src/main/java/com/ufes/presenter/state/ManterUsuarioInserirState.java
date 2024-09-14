@@ -7,6 +7,7 @@ package com.ufes.presenter.state;
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
 import com.ufes.presenter.BoasVindasPresenter;
+import com.ufes.services.ValidadorEntryService;
 import com.ufes.view.BoasVindasView;
 import com.ufes.view.ManterUsuarioView;
 import java.io.IOException;
@@ -46,6 +47,8 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
         // Lógica de cadastro
         String nome = view.getjTxtFNome().getText();
         String senha = String.valueOf(view.getjPassFSenha().getPassword());
+        ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
+        validadorEntryService.validarCadastro(); // Validar entradas
         Usuario usuario = new Usuario(nome, senha, false, true);
         
         UsuarioDAO usuarioDAO = new UsuarioDAO();
