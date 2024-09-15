@@ -114,17 +114,29 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 			BoasVindasPresenter boasVindasPresenter = new BoasVindasPresenter(principalView.getDesktopPane(), this);
 		} else {
 			// Se estiver logado, exibe todos os componentes
+
 			principalView.getDesktopPane().setVisible(true);
-			principalView.getNotificationButton().setVisible(true);
-			principalView.getJMenuBar().setVisible(true);
-			principalView.getNotifcacoesLbl().setVisible(true);
-			principalView.getUsuarioNomeLbl().setVisible(true);
-			principalView.getUsuarioNome().setVisible(true);
+
+			if(UsuarioLogado.getINSTANCE().isAutorizado()){
+				principalView.getNotificationButton().setVisible(true);
+				principalView.getJMenuBar().setVisible(true);
+				principalView.getNotifcacoesLbl().setVisible(true);
+				principalView.getUsuarioNomeLbl().setVisible(true);
+				principalView.getUsuarioNome().setVisible(true);
+				principalView.getjMenuUsuarios().setVisible(false);
+			}
+
+			if(UsuarioLogado.getINSTANCE().isAdmin()){
+				principalView.getjMenuUsuarios().setVisible(true);
+			}
+
 
 			// Atualiza o nome do usuário na interface
 			principalView.setUsuarioNome(usuario.getNome());
 		}
+
 	}
+
 
 	@Override
 	public void update(Usuario usuario) {

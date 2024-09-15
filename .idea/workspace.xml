@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="alterações para corrigir o campo de usuário logado e num de notificações">
+    <list default="true" id="2071cf8c-7d47-407f-96e2-161dfbc828af" name="Changes" comment="Alterações que permitem que o primeiro usuário cadastrado seja admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/log.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/log.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample.db" beforeDir="false" afterPath="$PROJECT_DIR$/sample.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/DAO/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/presenter/PrincipalPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/presenter/PrincipalPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ufes/view/PrincipalView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ufes/view/PrincipalView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726359022560</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Alterações que permitem que o primeiro usuário cadastrado seja admin">
+      <option name="closed" value="true" />
+      <created>1726360866342</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1726360866344</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -241,7 +251,8 @@
     <MESSAGE value="log de inserção" />
     <MESSAGE value="adicionando log de falha no usuario" />
     <MESSAGE value="alterações para corrigir o campo de usuário logado e num de notificações" />
-    <option name="LAST_COMMIT_MESSAGE" value="alterações para corrigir o campo de usuário logado e num de notificações" />
+    <MESSAGE value="Alterações que permitem que o primeiro usuário cadastrado seja admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterações que permitem que o primeiro usuário cadastrado seja admin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

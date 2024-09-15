@@ -4,10 +4,7 @@
  */
 package com.ufes.view;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 
 import com.ufes.LogSystem.LogConfig;
 
@@ -81,6 +78,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
 	public void setUsuarioNome(String UsuarioNome) {
 		this.UsuarioNome.setText(UsuarioNome);
+	}
+
+	public JMenu getjMenuUsuarios() {
+		return jMenuUsuarios;
 	}
 
 	public void setUsuarioNomeLbl(JLabel UsuarioNomeLbl) {
