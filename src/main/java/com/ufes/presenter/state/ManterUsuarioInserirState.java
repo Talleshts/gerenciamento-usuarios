@@ -49,21 +49,46 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
         view.setCancelarButtonText("Cancelar");
     }
     
-    @Override
-    public void executarAcao(ManterUsuarioView view) {
-        // Lógica de cadastro
-        String nome = view.getjTxtFNome().getText();
-        String senha = String.valueOf(view.getjPassFSenha().getPassword());
-        String email = String.valueOf(view.getjTxtFEmail().getText());
+@Override
+public void executarAcao(ManterUsuarioView view) {
+    // Lógica de cadastro
+    String nome = view.getjTxtFNome().getText();
+    String senha = String.valueOf(view.getjPassFSenha().getPassword());
+    String email = String.valueOf(view.getjTxtFEmail().getText());
 
-        // Obtém os dados do usuário logado
-        Usuario usuarioLogado = UsuarioLogado.getINSTANCE().getDadosUsuarioLogado();
+    // Obtém os dados do usuário logado
+    Usuario usuarioLogado = UsuarioLogado.getINSTANCE().getDadosUsuarioLogado();
 
-        if (usuarioLogado == null) {
-            JOptionPane.showMessageDialog(view, "Nenhum usuário está logado.", "Erro", JOptionPane.ERROR_MESSAGE);
-            return; // Sai do método se não houver usuário logado
+    // Verifica se o usuário logado é null (nenhum usuário está logado)
+    if (usuarioLogado == null) {
+        // Realiza o cadastro
+        ValidadorEntryService validadorEntryService = new ValidadorEntryService(view);
+        validadorEntryService.validarCadastro(); // Valida as entradas
+
+        Usuario usuarioObj = new Usuario(nome, senha, email, false, true);
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        try {
+            // Salva o novo usuário no banco de dados
+            usuarioDAO.insert(usuarioObj);
+
+            // Exibe mensagem de sucesso
+            JOptionPane.showMessageDialog(view, "Cadastro realizado com sucesso!");
+
+            // Redireciona para a tela de boas-vindas
+            view.setVisible(false); // Esconde a tela de manter usuário
+
+            // Se o presenter principal estiver disponível, volta para a tela de boas-vindas
+            if (principalPresenter != null) {
+                principalPresenter.voltarParaBoasVindas();
+            } else {
+                JOptionPane.showMessageDialog(view, "Erro: Presenter não inicializado.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view, "Erro ao realizar cadastro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-
+    } else {
+        // Se houver um usuário logado, apenas registra a operação de cadastro
         String nomeUsuarioLogado = usuarioLogado.getNome(); // Nome do usuário logado
         String operacao = "Cadastro de usuário"; // Descreva a operação
 
@@ -71,12 +96,11 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
         validadorEntryService.validarCadastro(); // Validar entradas
 
         Usuario usuarioObj = new Usuario(nome, senha, email, false, true);
-
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
-            // Log do erro de banco de dados
-            usuarioDAO.insert(usuarioObj); // Salvando o usuário no banco
+            // Salva o novo usuário no banco de dados
+            usuarioDAO.insert(usuarioObj);
 
             // Log da ação de inserção
             List<ILogAdapter> logAdapters = LogAdapterFactory.getLogAdapters(); // Obtém a lista de adaptadores de log
@@ -84,29 +108,16 @@ public class ManterUsuarioInserirState implements ManterUsuarioState{
                 logAdapter.logOperacao(operacao, nome, nomeUsuarioLogado);
             }
 
-            // Exibe a mensagem de sucesso
-            JOptionPane.showMessageDialog(view, "Cadastro realizado com sucesso!");
-
-            // Verifica se o usuário já está logado
-            if (UsuarioLogado.getINSTANCE().getNome() == null) {
-                // Se o usuário não estiver logado, fecha a tela e volta para a tela de boas-vindas
-                view.setVisible(false); // Esconde a tela de manter usuário
-
-                // Em vez de criar um novo BoasVindasPresenter, reutiliza o PrincipalPresenter
-                if (principalPresenter != null) {
-                    principalPresenter.voltarParaBoasVindas();
-                } else {
-                    JOptionPane.showMessageDialog(view, "Erro: Presenter não inicializado.", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(view, "O cadastro foi realizado.");
-                view.setVisible(false);
-            }
+            // Exibe mensagem de sucesso e fecha a tela
+            JOptionPane.showMessageDialog(view, "O cadastro foi realizado.");
+            view.setVisible(false);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view, "Erro ao realizar cadastro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+}
+
 
 
 }
