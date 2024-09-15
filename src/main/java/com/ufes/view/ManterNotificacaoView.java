@@ -22,6 +22,10 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ManterNotificacaoView
      */
+    public ManterNotificacaoView() {
+        initComponents();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +43,7 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTmensagem = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTmensagem1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
@@ -52,12 +56,10 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
 
         jBtenviar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         jBtenviar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jBtenviar.setForeground(new java.awt.Color(255, 255, 255));
         jBtenviar.setText("Enviar");
 
         jBtnCancelar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
         jBtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jBtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jBtnCancelar.setText("Cancelar");
         jBtnCancelar.setMaximumSize(new java.awt.Dimension(93, 22));
         jBtnCancelar.setMinimumSize(new java.awt.Dimension(93, 22));
@@ -198,7 +200,7 @@ public class ManterNotificacaoView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtenviar;
     private javax.swing.JButton jBtnCancelar;
-    private javax.swing.JComboBox<Usuario> jComboBox1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

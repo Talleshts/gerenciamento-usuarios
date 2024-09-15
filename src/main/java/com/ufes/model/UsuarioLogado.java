@@ -1,55 +1,65 @@
 package com.ufes.model;
 
 public class UsuarioLogado {
-    private int id;
-    private String nome;
-    private String senha;
-    private String email;
-    private boolean isAdmin;
-    private boolean isAutorizado;
+	private int id;
+	private String nome;
+	private String senha;
+	private String email;
+	private boolean isAdmin;
+	private boolean isAutorizado;
 
-    private static UsuarioLogado INSTANCE;
-    private Usuario dadosUsuarioLogado;
+	private static UsuarioLogado INSTANCE;
+	private Usuario dadosUsuarioLogado;
 
-    private UsuarioLogado(){
+	private UsuarioLogado() {
 
-    }
-    public static UsuarioLogado getINSTANCE(){
-        if (INSTANCE == null) {
-            INSTANCE = new UsuarioLogado();
-        }
-        return INSTANCE;
-    }
-    
-    public void setDadosUsuarioLogado(Usuario usuario){
-        this.dadosUsuarioLogado = usuario;
-    }
-    
-    public Usuario getDadosUsuarioLogado() {
-        return dadosUsuarioLogado;
-    }
+	}
 
-    public int getId() {
-        return id;
-    }
+	public static UsuarioLogado getINSTANCE() {
+		if (INSTANCE == null) {
+			INSTANCE = new UsuarioLogado();
+		}
+		return INSTANCE;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void reset() {
+		id = 0;
+		nome = null;
+		email = null;
+		senha = null;
+		isAutorizado = false;
+		isAdmin = false;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setDadosUsuarioLogado(Usuario usuario) {
+		this.dadosUsuarioLogado = usuario;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public Usuario getDadosUsuarioLogado() {
+		return dadosUsuarioLogado;
+	}
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public boolean isAutorizado() {
-        return isAutorizado;
-    }
+	public String getNome() {
+		return nome;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public boolean isAutorizado() {
+		return isAutorizado;
+	}
 }

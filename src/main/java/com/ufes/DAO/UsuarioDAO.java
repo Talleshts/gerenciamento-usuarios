@@ -35,7 +35,6 @@ public class UsuarioDAO {
 				Statement stt = conn.createStatement()) {
 
 			stt.execute(sql);
-			System.out.println("TABELA USUARIO CRIADA");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -79,10 +78,10 @@ public class UsuarioDAO {
 
 			stt.setString(1, usuario.getNome());
 			stt.setString(2, usuario.getSenha());
-			stt.setString(2, usuario.getEmail());
-			stt.setInt(3, usuario.isAdmin() ? 1 : 0);
-			stt.setInt(4, usuario.isAutorizado() ? 1 : 0);
-			stt.setInt(5, usuario.getId());
+			stt.setString(3, usuario.getEmail());
+			stt.setInt(4, usuario.isAdmin() ? 1 : 0);
+			stt.setInt(5, usuario.isAutorizado() ? 1 : 0);
+			stt.setInt(6, usuario.getId());
 
 			stt.executeUpdate();
 
@@ -93,54 +92,36 @@ public class UsuarioDAO {
 	}
 
 	public void insert(Usuario usuario) {
-
 		List<Usuario> existAdmin = findAll();
 
-		if(existAdmin.isEmpty()){
-			String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?, ?)";
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			String dataCadastro = formatter.format(usuario.getDataCadastro());
+		String sql = "INSERT INTO USUARIOS (NOME, SENHA, EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?, ?)";
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String dataCadastro = formatter.format(usuario.getDataCadastro());
 
-			try (Connection conn = ConnectionDBService.getConnection();
-				 PreparedStatement stt = conn.prepareStatement(sql)) {
+		try (Connection conn = ConnectionDBService.getConnection();
+				PreparedStatement stt = conn.prepareStatement(sql)) {
 
-				stt.setString(1, usuario.getNome());
-				stt.setString(2, usuario.getSenha());
-				stt.setString(3, usuario.getEmail());
-				stt.setInt(4, 1 );
-				stt.setInt(5, 1 );
-				stt.setString(6, dataCadastro);
+			stt.setString(1, usuario.getNome());
+			stt.setString(2, usuario.getSenha());
+			stt.setString(3, usuario.getEmail());
 
-				stt.executeUpdate();
-
-			} catch (SQLException e) {
-				executeLog("Inclusão", usuario, e);
-				throw new RuntimeException(e);
+			if (existAdmin.isEmpty()) {
+				stt.setInt(4, 1); // Primeiro usuário é admin
+				stt.setInt(5, 1); // Primeiro usuário é autorizado
+			} else {
+				stt.setInt(4, usuario.isAdmin() ? 1 : 0);
+				stt.setInt(5, usuario.isAutorizado() ? 1 : 0);
 			}
-		}else{
-			String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?, ?)";
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			String dataCadastro = formatter.format(usuario.getDataCadastro());
 
-			try (Connection conn = ConnectionDBService.getConnection();
-				 PreparedStatement stt = conn.prepareStatement(sql)) {
+			stt.setString(6, dataCadastro);
 
-				stt.setString(1, usuario.getNome());
-				stt.setString(2, usuario.getSenha());
-				stt.setString(3, usuario.getEmail());
-				stt.setInt(4,  0);
-				stt.setInt(5,  1);
-				stt.setString(6, dataCadastro);
+			stt.executeUpdate();
 
-				stt.executeUpdate();
-
-			} catch (SQLException e) {
-				executeLog("Inclusão", usuario, e);
-				throw new RuntimeException(e);
-			}
+		} catch (SQLException e) {
+			executeLog("Inclusão", usuario, e);
+			throw new RuntimeException(e);
 		}
-
-    }
+	}
 
 	public Usuario findByID(int id) {
 		Usuario usuario = null;
