@@ -32,7 +32,6 @@ Este projeto é parte do trabalho final da disciplina de Projeto de Sistemas de 
 - **Padrões de Projeto:**
   - **State:** Implementado nos casos de uso do tipo CRUD.
   - **DAO:** Para a camada de persistência.
-  - **Command:** Integrado ao padrão State.
   - **Observer:** Para garantir que todas as janelas abertas sejam atualizadas em tempo real.
   - **Adapter:** Utilizado no módulo de log para suportar diferentes formatos de arquivos (CSV e JSON).
 - **Validador de Senhas:** Implementado com base no Validador de Senhas disponível em [GitHub](https://github.com/claytonfraga/validadorsenha), incluído como JAR no projeto Maven.
