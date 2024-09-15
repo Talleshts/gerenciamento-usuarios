@@ -14,7 +14,6 @@ public class ManterNotificacaoPresenter {
         this.view = view;
         NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
         this.view.getSendButton().addActionListener(e -> {
-            // Logic to execute when the button is clicked
             String titulo = view.getTitulo();
             String mensagem = view.getMessage();
             Notificacao notificacao = new Notificacao(1, titulo, mensagem);
@@ -25,7 +24,6 @@ public class ManterNotificacaoPresenter {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-            // Add your desired logic here
         });
     }
 }

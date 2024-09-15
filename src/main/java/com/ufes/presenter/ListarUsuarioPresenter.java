@@ -6,11 +6,17 @@ package com.ufes.presenter;
 
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
+import com.ufes.observer.ObservavelNotificacao;
 import com.ufes.view.ListarUsuarioView;
 import com.ufes.view.ManterNotificacaoView;
+import com.ufes.view.PrincipalView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,9 +28,13 @@ public class ListarUsuarioPresenter {
 
     private ListarUsuarioView view;
     private UsuarioDAO usuarioDAO;
+    private PrincipalView principalView;
+    private ObservavelNotificacao observavelNotificacao;
+    private ManterNotificacaoView manterNotificacaoView;
 
-    public ListarUsuarioPresenter(ListarUsuarioView view) {
+    public ListarUsuarioPresenter(ListarUsuarioView view, PrincipalView principalView) {
         this.view = view;
+        this.principalView = principalView;
         this.usuarioDAO = new UsuarioDAO();
         carregarUsuarios();
         addActionListeners();
@@ -48,7 +58,7 @@ public class ListarUsuarioPresenter {
         view.getBtnEnviarNotificacao().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                abrirTelaNotificacao();
+                abrirManterNotificacaoView();
             }
         });
     }
@@ -118,10 +128,21 @@ public class ListarUsuarioPresenter {
         }
     }
 
-    private void abrirTelaNotificacao() {
-        // Supondo que você tem um método para abrir a tela de notificações.
-        ManterNotificacaoView notificacaoView = new ManterNotificacaoView();
-        notificacaoView.setVisible(true);
+    public void abrirManterNotificacaoView() {
+        if (principalView != null) {
+            System.out.println("ENTROU");
+            JDesktopPane desktopPane = principalView.getDesktopPane();
+
+            ManterNotificacaoView manterNotificacaoView = new ManterNotificacaoView();
+            desktopPane.add(manterNotificacaoView);
+
+            manterNotificacaoView.setVisible(true);
+
+            desktopPane.revalidate();
+            desktopPane.repaint();
+        } else {
+            System.err.println("PrincipalView is null");
+        }
     }
     
 }

@@ -214,10 +214,11 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 
 		view.setVisible(true);
 
-		ListarUsuarioPresenter presenter = new ListarUsuarioPresenter(view);
+		ListarUsuarioPresenter presenter = new ListarUsuarioPresenter(view, principalView);
 
 		// Garantir que o desktopPane seja atualizado
 		desktopPane.revalidate();
 		desktopPane.repaint();
-	}
+        }
+
 }
