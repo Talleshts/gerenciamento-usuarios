@@ -1,6 +1,7 @@
 package com.ufes.presenter;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,7 +52,13 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 		principalView.getjMenuItemDeslogar().addActionListener(evt -> voltarParaBoasVindas());
 		principalView.getjMenuItemEditarUsuario().addActionListener(evt -> abrirTelaEditarUsuario());
 		principalView.getjMenuItemInserirUsuario().addActionListener(evt -> abrirTelaInserirUsuario());
-		principalView.getjMenuItemListarUsuario().addActionListener(evt -> abrirTelaListarUsuario());
+		principalView.getjMenuItemListarUsuario().addActionListener(evt -> {
+			try {
+				abrirTelaListarUsuario();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	public void atualizarEstadoUsuario(Usuario usuario) throws IOException {
@@ -101,9 +108,13 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 
 		if (usuario.isAdmin()) {
 			principalView.getjMenuUsuarios().setVisible(true);
+			principalView.setUsuarioTipo("Administrador");
+		} else {
+			principalView.setUsuarioTipo("Usuário");
 		}
 
 		principalView.setUsuarioNome(usuario.getNome());
+
 	}
 
 	@Override
@@ -168,7 +179,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 		desktopPane.repaint();
 	}
 
-	private void abrirTelaListarUsuario() {
+	private void abrirTelaListarUsuario() throws SQLException {
 		JDesktopPane desktopPane = principalView.getDesktopPane();
 
 		for (java.awt.Component comp : desktopPane.getComponents()) {

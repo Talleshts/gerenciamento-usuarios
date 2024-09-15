@@ -107,9 +107,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="UsuarioNomeLbl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="UsuarioNome" min="-2" pref="265" max="-2" attributes="0"/>
-              <EmptySpace pref="968" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="UsuarioNome1" min="-2" pref="265" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <Component id="UsuarioTipo" min="-2" pref="265" max="-2" attributes="0"/>
+              <EmptySpace pref="685" max="32767" attributes="0"/>
               <Component id="NotifcacoesLbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnNotificacao" min="-2" pref="81" max="-2" attributes="0"/>
@@ -127,7 +129,7 @@
               <Component id="jDesktopPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="UsuarioNome" max="32767" attributes="0"/>
+                  <Component id="UsuarioTipo" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnNotificacao" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
@@ -142,6 +144,7 @@
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="UsuarioNome1" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -169,7 +172,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JLabel" name="UsuarioNome">
+    <Component class="javax.swing.JLabel" name="UsuarioTipo">
     </Component>
     <Component class="javax.swing.JButton" name="btnNotificacao">
       <Properties>
@@ -190,6 +193,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Usu&#xe1;rio Logado"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="UsuarioNome1">
     </Component>
   </SubComponents>
 </Form>

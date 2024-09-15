@@ -161,22 +161,22 @@ public class NotificacaoDAO {
 		return 0;
 	}
 
-	public int countNotificacoesVisualizadasByUsuario(int idUsuario) throws Exception {
-		String SQL = """
-				SELECT count(1)
-				FROM Notificacao n
-				WHERE n.id_usuario = ? AND n.visualizou = 1;
-				""";
-		try (Connection conn = ConnectionDBService.getConnection();
-				PreparedStatement ps = conn.prepareStatement(SQL)) {
-			ps.setInt(1, idUsuario);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-		} catch (Exception e) {
-			throw new Exception("Erro ao buscar");
-		}
-		return 0;
-	}
+        public int countNotificacoesVisualizadasByUsuario(int idUsuario) throws Exception {
+            String SQL = """
+                    SELECT count(1)
+                    FROM Notificacao n
+                    WHERE n.id_usuario = ? AND n.visualizada = 1;
+                    """;
+            try (Connection conn = ConnectionDBService.getConnection();
+                    PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, idUsuario);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (Exception e) {
+                throw new Exception("Erro ao buscar");
+            }
+            return 0;
+        }
 }

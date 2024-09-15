@@ -1,11 +1,13 @@
 package com.ufes.presenter;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import com.ufes.DAO.NotificacaoDAO;
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
 import com.ufes.model.UsuarioLogado;
@@ -19,12 +21,14 @@ public class ListarUsuarioPresenter {
 
 	private ListarUsuarioView view;
 	private UsuarioDAO usuarioDAO;
+	private NotificacaoDAO notificacaoDAO;
 	private PrincipalView principalView;
 
-	public ListarUsuarioPresenter(ListarUsuarioView view, PrincipalView principalView) {
+	public ListarUsuarioPresenter(ListarUsuarioView view, PrincipalView principalView) throws SQLException {
 		this.view = view;
 		this.principalView = principalView;
 		this.usuarioDAO = new UsuarioDAO();
+		this.notificacaoDAO = new NotificacaoDAO();
 		carregarUsuarios();
 		addActionListeners();
 	}
@@ -45,8 +49,19 @@ public class ListarUsuarioPresenter {
 		model.addColumn("Data de Cadastro");
 		model.addColumn("Admin");
 		model.addColumn("Autorizado");
+		model.addColumn("Notificações");
+		model.addColumn("Visualizadas");
 
 		for (Usuario usuario : usuarios) {
+			int totalNotificacoes = 0;
+			int notificacoesVisualizadas = 0;
+			try {
+				totalNotificacoes = notificacaoDAO.countNotificacoesPendenteByUsuario(usuario.getId());
+				notificacoesVisualizadas = notificacaoDAO.countNotificacoesVisualizadasByUsuario(usuario.getId());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			model.addRow(new Object[] {
 					usuario.getId(),
 					usuario.getNome(),
@@ -54,7 +69,9 @@ public class ListarUsuarioPresenter {
 					usuario.getSenha(),
 					usuario.getDataCadastro(),
 					usuario.isAdmin() ? "Sim" : "Não",
-					usuario.isAutorizado() ? "Sim" : "Não"
+					usuario.isAutorizado() ? "Sim" : "Não",
+					totalNotificacoes,
+					notificacoesVisualizadas
 			});
 		}
 
