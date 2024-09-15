@@ -43,7 +43,6 @@ public class ManterUsuarioLoginState implements ManterUsuarioState{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.findByEmailESenha(email, senha);
 
-
         if (usuario != null) {
             JOptionPane.showMessageDialog(view, "Login realizado com sucesso!");
             view.setVisible(false); // Esconde a tela de login
