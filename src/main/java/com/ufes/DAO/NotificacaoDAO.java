@@ -26,7 +26,7 @@ public class NotificacaoDAO {
     }
 
     public void createTableNotificacao() {
-        String sql = "CREATE TABLE IF NOT EXISTS notificacoes "
+        String sql = "CREATE TABLE IF NOT EXISTS Notificacao "
                 + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "mensagem TEXT, "
                 + "titulo TEXT, "
@@ -37,7 +37,7 @@ public class NotificacaoDAO {
                 Statement stt = conn.createStatement()) {
 
             stt.execute(sql);
-            System.out.println("TABELA notificacoes CRIADA");
+            System.out.println("TABELA Notificacao CRIADA");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
