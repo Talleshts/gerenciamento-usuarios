@@ -120,7 +120,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 			principalView.getUsuarioNome().setVisible(true);
 
 			// Atualiza o nome do usuário na interface
-			principalView.setUsuarioNome(new JLabel(usuario.getNome()));
+			principalView.setUsuarioNome(usuario.getNome());
 		}
 	}
 

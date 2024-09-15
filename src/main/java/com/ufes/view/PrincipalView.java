@@ -79,8 +79,8 @@ public class PrincipalView extends javax.swing.JFrame {
 		this.NotifcacoesLbl = NotifcacoesLbl;
 	}
 
-	public void setUsuarioNome(JLabel UsuarioNome) {
-		this.UsuarioNome = UsuarioNome;
+	public void setUsuarioNome(String UsuarioNome) {
+		this.UsuarioNome.setText(UsuarioNome);
 	}
 
 	public void setUsuarioNomeLbl(JLabel UsuarioNomeLbl) {
