@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JDesktopPane;
-import javax.swing.JLabel;
 
 import com.ufes.DAO.NotificacaoDAO;
 import com.ufes.model.Notificacao;
@@ -51,24 +50,24 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 
 		listarNotificacaoView = new ListarNotificacaoView();
 		listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
-
+		setNotificationNumber();
 		// Adiciona listener para o botão de notificações
 		principalView.getNotificationButton().addActionListener(evt -> {
-                    JDesktopPane desktopPane = principalView.getDesktopPane();
-                    desktopPane.removeAll(); // Remove todos os componentes atuais
+			JDesktopPane desktopPane = principalView.getDesktopPane();
+			desktopPane.removeAll(); // Remove todos os componentes atuais
 
-                    listarNotificacaoView = new ListarNotificacaoView();
-                    listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
+			listarNotificacaoView = new ListarNotificacaoView();
+			listarNotificacaoPresenter = new ListarNotificacaoPresenter(listarNotificacaoView);
 
-                    // Adiciona a view de notificações no JDesktopPane
-                    desktopPane.add(listarNotificacaoView);
+			// Adiciona a view de notificações no JDesktopPane
+			desktopPane.add(listarNotificacaoView);
 
-                    listarNotificacaoView.setVisible(true);
+			listarNotificacaoView.setVisible(true);
 
-                    // Revalida e repinta o desktopPane para garantir que ele seja atualizado
-                    desktopPane.revalidate();
-                    desktopPane.repaint();
-                });
+			// Revalida e repinta o desktopPane para garantir que ele seja atualizado
+			desktopPane.revalidate();
+			desktopPane.repaint();
+		});
 
 		// Adiciona ActionListeners para os itens de menu
 		principalView.getjMenuItemDeslogar().addActionListener(new ActionListener() {
@@ -137,17 +136,26 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 		}
 	}
 
+	public void setNotificationNumber() {
+		try {
+			NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
+			int number = notificacaoDAO.countNotificacoesPendenteByUsuario(usuario.getId());
+			System.err.println(number);
+			principalView.setNotifcacoesLbl(String.valueOf(number));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	@Override
 	public void update(Notificacao notificacao) {
-        try {
-            NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
-			int number = notificacaoDAO.countNotificacoesPendenteByUsuario(usuario.getId());
-			String labelText = principalView.getNotifcacoesLbl().getText();
-
-			principalView.setNotifcacoesLbl(new JLabel(String.valueOf(number)));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+		try {
+			setNotificationNumber();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	// Método para voltar para a tela de boas-vindas
