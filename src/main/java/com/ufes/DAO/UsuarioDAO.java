@@ -93,26 +93,53 @@ public class UsuarioDAO {
 	}
 
 	public void insert(Usuario usuario) {
-		String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?, ?)";
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		String dataCadastro = formatter.format(usuario.getDataCadastro());
 
-		try (Connection conn = ConnectionDBService.getConnection();
-				PreparedStatement stt = conn.prepareStatement(sql)) {
+		List<Usuario> existAdmin = findAll();
 
-			stt.setString(1, usuario.getNome());
-			stt.setString(2, usuario.getSenha());
-			stt.setString(3, usuario.getEmail());
-			stt.setInt(4, usuario.isAdmin() ? 1 : 0);
-			stt.setInt(5, usuario.isAutorizado() ? 1 : 0);
-			stt.setString(6, dataCadastro);
+		if(existAdmin.isEmpty()){
+			String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?, ?)";
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String dataCadastro = formatter.format(usuario.getDataCadastro());
 
-			stt.executeUpdate();
+			try (Connection conn = ConnectionDBService.getConnection();
+				 PreparedStatement stt = conn.prepareStatement(sql)) {
 
-        } catch (SQLException e) {
-            executeLog("Inclusão", usuario, e);
-            throw new RuntimeException(e);
-        }
+				stt.setString(1, usuario.getNome());
+				stt.setString(2, usuario.getSenha());
+				stt.setString(3, usuario.getEmail());
+				stt.setInt(4, 1 );
+				stt.setInt(5, 1 );
+				stt.setString(6, dataCadastro);
+
+				stt.executeUpdate();
+
+			} catch (SQLException e) {
+				executeLog("Inclusão", usuario, e);
+				throw new RuntimeException(e);
+			}
+		}else{
+			String sql = "INSERT INTO USUARIOS (NOME, SENHA,EMAIL, IS_ADMIN, IS_AUTORIZADO, DATA_CADASTRO) VALUES (?, ?, ?, ?, ?, ?)";
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String dataCadastro = formatter.format(usuario.getDataCadastro());
+
+			try (Connection conn = ConnectionDBService.getConnection();
+				 PreparedStatement stt = conn.prepareStatement(sql)) {
+
+				stt.setString(1, usuario.getNome());
+				stt.setString(2, usuario.getSenha());
+				stt.setString(3, usuario.getEmail());
+				stt.setInt(4,  0);
+				stt.setInt(5,  0);
+				stt.setString(6, dataCadastro);
+
+				stt.executeUpdate();
+
+			} catch (SQLException e) {
+				executeLog("Inclusão", usuario, e);
+				throw new RuntimeException(e);
+			}
+		}
+
     }
 
 	public Usuario findByID(int id) {
