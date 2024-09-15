@@ -7,14 +7,17 @@ package com.ufes.presenter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 
+import com.ufes.DAO.NotificacaoDAO;
 import com.ufes.model.Notificacao;
 import com.ufes.model.Usuario;
+import com.ufes.model.UsuarioLogado;
 import com.ufes.observer.IObserverNotificacao;
 import com.ufes.observer.IObserverUsuario;
 import com.ufes.observer.ObservavelNotificacao;
@@ -120,7 +123,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 			principalView.getUsuarioNome().setVisible(true);
 
 			// Atualiza o nome do usuário na interface
-			principalView.setUsuarioNome(new JLabel(usuario.getNome()));
+			principalView.setUsuarioNome(new JLabel(UsuarioLogado.getINSTANCE().getNome()));
 		}
 	}
 
@@ -136,9 +139,15 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 
 	@Override
 	public void update(Notificacao notificacao) {
-		String labelText = principalView.getNotifcacoesLbl().getText();
-		int number = Integer.parseInt(labelText) + 1;
-		principalView.setNotifcacoesLbl(new JLabel(String.valueOf(number)));
+        try {
+            NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
+			int number = notificacaoDAO.countNotificacoesPendenteByUsuario(usuario.getId());
+			String labelText = principalView.getNotifcacoesLbl().getText();
+
+			principalView.setNotifcacoesLbl(new JLabel(String.valueOf(number)));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 	}
 
 	// Método para voltar para a tela de boas-vindas

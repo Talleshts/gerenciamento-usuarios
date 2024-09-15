@@ -109,10 +109,11 @@ public class UsuarioDAO {
 
 			stt.executeUpdate();
 
-		} catch (SQLException e) {
-			executeLog("Inclusão", usuario, e);
-		}
-	}
+        } catch (SQLException e) {
+            executeLog("Inclusão", usuario, e);
+            throw new RuntimeException(e);
+        }
+    }
 
 	public Usuario findByID(int id) {
 		Usuario usuario = null;
