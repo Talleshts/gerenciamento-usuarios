@@ -5,13 +5,13 @@
 package com.ufes.presenter.state;
 
 import com.ufes.DAO.UsuarioDAO;
-import com.ufes.LogSystem.ILogAdapter;
-import com.ufes.LogSystem.LogAdapterFactory;
 import com.ufes.model.Usuario;
 import com.ufes.model.UsuarioLogado;
 import com.ufes.presenter.BoasVindasPresenter;
 import com.ufes.presenter.PrincipalPresenter;
 import com.ufes.services.ValidadorEntryService;
+import com.ufes.sistemalog.ILogAdapter;
+import com.ufes.sistemalog.LogAdapterFactory;
 import com.ufes.view.BoasVindasView;
 import com.ufes.view.ManterUsuarioView;
 import java.io.IOException;

@@ -20,6 +20,12 @@
     </repositories>
     <dependencies>
         <dependency>
+	    <groupId>com.github.Talleshts</groupId>
+	    <artifactId>SistemaLog</artifactId>
+	    <version>main-6d4bd0079a-1</version>
+            <type>jar</type>
+	</dependency>
+        <dependency>
             <groupId>com.github.claytonfraga</groupId>
             <artifactId>validadorsenha</artifactId>
             <version>master-c949bd44ba-1</version>
@@ -41,6 +47,12 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20240303</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ufes</groupId>
+            <artifactId>GerenciamentoUsuarios</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

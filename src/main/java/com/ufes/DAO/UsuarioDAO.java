@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.ufes.LogSystem.ILogAdapter;
-import com.ufes.LogSystem.LogAdapterFactory;
 import com.ufes.model.Usuario;
 import com.ufes.model.UsuarioLogado;
 import com.ufes.services.ConnectionDBService;
+import com.ufes.sistemalog.ILogAdapter;
+import com.ufes.sistemalog.LogAdapterFactory;
 
 public class UsuarioDAO {
 

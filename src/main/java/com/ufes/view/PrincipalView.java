@@ -6,7 +6,7 @@ package com.ufes.view;
 
 import javax.swing.*;
 
-import com.ufes.LogSystem.LogConfig;
+import com.ufes.sistemalog.LogConfig;
 
 /**
  *

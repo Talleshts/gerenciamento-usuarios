@@ -99,43 +99,54 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 		});
 	}
 
-	public void atualizarEstadoUsuario(Usuario usuario) throws IOException {
-		if (usuario == null) {
-			// Se não estiver logado, exibe apenas o JDesktopPane e oculta outros
-			// componentes
-			principalView.getDesktopPane().setVisible(true);
-			principalView.getNotificationButton().setVisible(false);
-			principalView.getJMenuBar().setVisible(false);
-			principalView.getNotifcacoesLbl().setVisible(false);
-			principalView.getUsuarioNomeLbl().setVisible(false);
-			principalView.getUsuarioNome().setVisible(false);
+       public void atualizarEstadoUsuario(Usuario usuario) throws IOException {
+            // Depuração
+            System.out.println("Atualizando estado do usuário: " + (usuario != null ? usuario.getNome() : "Nenhum usuário"));
 
-			// Mostra a tela de boas-vindas
-			BoasVindasPresenter boasVindasPresenter = new BoasVindasPresenter(principalView.getDesktopPane(), this);
-		} else {
-			// Se estiver logado, exibe todos os componentes
+            if (usuario == null) {
+                // Se não estiver logado, exibe apenas o JDesktopPane e oculta outros componentes
+                System.out.println("Usuário não logado. Exibindo tela de boas-vindas.");
 
-			principalView.getDesktopPane().setVisible(true);
+                principalView.getDesktopPane().setVisible(true);
+                principalView.getNotificationButton().setVisible(false);
+                principalView.getJMenuBar().setVisible(false);
+                principalView.getNotifcacoesLbl().setVisible(false);
+                principalView.getUsuarioNomeLbl().setVisible(false);
+                principalView.getUsuarioNome().setVisible(false);
+                principalView.getjMenuUsuarios().setVisible(false);
 
-			if(UsuarioLogado.getINSTANCE().isAutorizado()){
-				principalView.getNotificationButton().setVisible(true);
-				principalView.getJMenuBar().setVisible(true);
-				principalView.getNotifcacoesLbl().setVisible(true);
-				principalView.getUsuarioNomeLbl().setVisible(true);
-				principalView.getUsuarioNome().setVisible(true);
-				principalView.getjMenuUsuarios().setVisible(false);
-			}
+                // Mostra a tela de boas-vindas
+                new BoasVindasPresenter(principalView.getDesktopPane(), this);
+            } else {
+                // Se estiver logado
+                System.out.println("Usuário logado: " + usuario.getNome());
 
-			if(UsuarioLogado.getINSTANCE().isAdmin()){
-				principalView.getjMenuUsuarios().setVisible(true);
-			}
+                principalView.getDesktopPane().setVisible(true);
+
+                if (!usuario.isAutorizado()) {
+                    System.out.println("Usuário autorizado.");
+                    principalView.getNotificationButton().setVisible(true);
+                    principalView.getJMenuBar().setVisible(true);
+                    principalView.getNotifcacoesLbl().setVisible(true);
+                    principalView.getUsuarioNomeLbl().setVisible(true);
+                    principalView.getUsuarioNome().setVisible(true);
+                    principalView.getjMenuUsuarios().setVisible(false);
+                } else {
+                    System.out.println("Usuário não autorizado.");
+                    principalView.getjMenuUsuarios().setVisible(false);
+                }
+
+                if (usuario.isAdmin()) {
+                    System.out.println("Usuário é admin.");
+                    principalView.getjMenuUsuarios().setVisible(true);
+                }
+
+                // Atualiza o nome do usuário na interface
+                principalView.setUsuarioNome(usuario.getNome());
+            }
+        }
 
 
-			// Atualiza o nome do usuário na interface
-			principalView.setUsuarioNome(usuario.getNome());
-		}
-
-	}
 
 
 	@Override
