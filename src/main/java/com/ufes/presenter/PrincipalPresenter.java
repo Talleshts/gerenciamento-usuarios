@@ -139,6 +139,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 	public void setNotificationNumber() {
 		try {
 			NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
+			System.out.println(UsuarioLogado.getINSTANCE().getId());
 			int number = notificacaoDAO.countNotificacoesPendenteByUsuario(UsuarioLogado.getINSTANCE().getId());
 			principalView.setNotifcacoesLbl(String.valueOf(number));
 		} catch (Exception e) {

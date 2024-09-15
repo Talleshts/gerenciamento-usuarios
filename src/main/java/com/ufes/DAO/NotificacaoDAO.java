@@ -145,7 +145,7 @@ public class NotificacaoDAO {
         String SQL = """
                 SELECT count(1)
                 FROM Notificacao n
-                WHERE n.id_usuario = ? AND n.visualizou = 0;
+                WHERE n.id_usuario = ? AND n.visualizada = 0;
                 """;
         try (Connection conn = ConnectionDBService.getConnection();
                 PreparedStatement ps = conn.prepareStatement(SQL)) {
@@ -155,6 +155,7 @@ public class NotificacaoDAO {
                 return rs.getInt(1);
             }
         } catch (Exception e) {
+            System.err.println(e);
             throw new Exception("Erro ao buscar");
         }
         return 0;
