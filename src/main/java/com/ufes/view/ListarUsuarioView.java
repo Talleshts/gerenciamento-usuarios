@@ -4,6 +4,8 @@
  */
 package com.ufes.view;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author talle
@@ -20,6 +22,20 @@ public class ListarUsuarioView extends javax.swing.JInternalFrame {
     public javax.swing.JTable getTblUsuarios() {
         return tblUsuarios;
     }
+
+    public JButton getBtnAutorizar() {
+        return btnAutorizar;
+    }
+
+    public JButton getBtnEnviarNotificacao() {
+        return btnEnviarNotificacao;
+    }
+
+    public JButton getBtnExcluir() {
+        return btnExcluir;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
