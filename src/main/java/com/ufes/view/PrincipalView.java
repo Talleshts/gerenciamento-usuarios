@@ -4,7 +4,11 @@
  */
 package com.ufes.view;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 import com.ufes.sistemalog.LogConfig;
 
@@ -105,6 +109,7 @@ public class PrincipalView extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
@@ -167,7 +172,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
 		jMenu2.setText("Alterar Log");
 
-		jCheckBoxMenuItemJSON.setSelected(true);
 		jCheckBoxMenuItemJSON.setText("JSON");
 		jMenu2.add(jCheckBoxMenuItemJSON);
 

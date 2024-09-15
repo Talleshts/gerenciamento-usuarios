@@ -45,7 +45,6 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemJSON">
                   <Properties>
-                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="JSON"/>
                   </Properties>
                 </MenuItem>

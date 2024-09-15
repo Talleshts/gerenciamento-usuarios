@@ -6,7 +6,10 @@ package com.ufes.presenter;
 
 import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
+import com.ufes.model.UsuarioLogado;
 import com.ufes.observer.ObservavelNotificacao;
+import com.ufes.sistemalog.ILogAdapter;
+import com.ufes.sistemalog.LogAdapterFactory;
 import com.ufes.view.ListarUsuarioView;
 import com.ufes.view.ManterNotificacaoView;
 import com.ufes.view.PrincipalView;
@@ -100,6 +103,14 @@ public class ListarUsuarioPresenter {
             Usuario usuario = usuarioDAO.findByID(id);
             if (usuario != null) {
                 usuarioDAO.remove(usuario);
+                
+            String nomeUsuarioLogado = UsuarioLogado.getINSTANCE().getNome(); // Nome do usuário logado
+            String operacao = "Edição de usuário"; // Descreva a operação
+            List<ILogAdapter> logAdapters = LogAdapterFactory.getLogAdapters(); // Obtém a lista de adaptadores de log
+            for (ILogAdapter logAdapter : logAdapters) {
+                logAdapter.logOperacao(operacao,usuario.getNome(), nomeUsuarioLogado);
+            }
+            
                 carregarUsuarios();
                 JOptionPane.showMessageDialog(view, "Usuário excluído com sucesso.");
             } else {

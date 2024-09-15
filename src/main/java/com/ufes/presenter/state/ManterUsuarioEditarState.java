@@ -8,7 +8,10 @@ import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
 import com.ufes.model.UsuarioLogado;
 import com.ufes.presenter.ManterUsuarioPresenter;
+import com.ufes.sistemalog.ILogAdapter;
+import com.ufes.sistemalog.LogAdapterFactory;
 import com.ufes.view.ManterUsuarioView;
+import java.util.List;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -66,6 +69,13 @@ public class ManterUsuarioEditarState implements ManterUsuarioState {
         // Atualiza o usuário no banco de dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.update(usuarioAtualizado);
+        
+        String nomeUsuarioLogado = usuarioLogado.getNome(); // Nome do usuário logado
+        String operacao = "Edição de usuário"; // Descreva a operação
+        List<ILogAdapter> logAdapters = LogAdapterFactory.getLogAdapters(); // Obtém a lista de adaptadores de log
+        for (ILogAdapter logAdapter : logAdapters) {
+            logAdapter.logOperacao(operacao,usuarioAtualizado.getNome(), nomeUsuarioLogado);
+        }
 
         // Atualiza o Singleton UsuarioLogado
         UsuarioLogado.getINSTANCE().setDadosUsuarioLogado(usuarioAtualizado);

@@ -19,6 +19,14 @@ public class ListarNotificacaoView extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JTable getTblNotificacoes() {
+        return tblNotificacoes;
+    }
+
+    
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,7 +39,7 @@ public class ListarNotificacaoView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAutorizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblUsuarios = new javax.swing.JTable();
+        tblNotificacoes = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -52,7 +60,7 @@ public class ListarNotificacaoView extends javax.swing.JInternalFrame {
 
         jScrollPane2.setBackground(java.awt.Color.white);
 
-        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblNotificacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -60,7 +68,7 @@ public class ListarNotificacaoView extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(tblUsuarios);
+        jScrollPane2.setViewportView(tblNotificacoes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +108,7 @@ public class ListarNotificacaoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAutorizarActionPerformed
 
     public JTable getTable() {
-        return tblUsuarios;
+        return tblNotificacoes;
     }
 
 
@@ -108,6 +116,6 @@ public class ListarNotificacaoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAutorizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTable tblNotificacoes;
     // End of variables declaration//GEN-END:variables
 }

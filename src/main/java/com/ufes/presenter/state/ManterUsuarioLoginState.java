@@ -4,8 +4,11 @@ import com.ufes.DAO.UsuarioDAO;
 import com.ufes.model.Usuario;
 import com.ufes.model.UsuarioLogado;
 import com.ufes.presenter.PrincipalPresenter;
+import com.ufes.sistemalog.ILogAdapter;
+import com.ufes.sistemalog.LogAdapterFactory;
 import com.ufes.view.ManterUsuarioView;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -49,6 +52,13 @@ public class ManterUsuarioLoginState implements ManterUsuarioState{
 
             UsuarioLogado usuarioLogado = UsuarioLogado.getINSTANCE();
             usuarioLogado.setDadosUsuarioLogado(usuario);
+            
+            String nomeUsuarioLogado = usuarioLogado.getNome(); // Nome do usuário logado
+            String operacao = "Edição de usuário"; // Descreva a operação
+            List<ILogAdapter> logAdapters = LogAdapterFactory.getLogAdapters(); // Obtém a lista de adaptadores de log
+            for (ILogAdapter logAdapter : logAdapters) {
+                logAdapter.logOperacao(operacao,usuario.getNome(), nomeUsuarioLogado);
+            }
             try {
                 principalPresenter.atualizarEstadoUsuario(usuario);
             } catch (IOException ex) {

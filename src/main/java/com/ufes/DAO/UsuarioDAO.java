@@ -129,7 +129,7 @@ public class UsuarioDAO {
 				stt.setString(2, usuario.getSenha());
 				stt.setString(3, usuario.getEmail());
 				stt.setInt(4,  0);
-				stt.setInt(5,  0);
+				stt.setInt(5,  1);
 				stt.setString(6, dataCadastro);
 
 				stt.executeUpdate();

@@ -123,7 +123,7 @@ public class PrincipalPresenter implements IObserverUsuario, IObserverNotificaca
 
                 principalView.getDesktopPane().setVisible(true);
 
-                if (!usuario.isAutorizado()) {
+                if (usuario.isAutorizado()) {
                     System.out.println("Usuário autorizado.");
                     principalView.getNotificationButton().setVisible(true);
                     principalView.getJMenuBar().setVisible(true);
